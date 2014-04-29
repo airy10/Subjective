@@ -140,4 +140,9 @@
 // because objc-class.h is public and objc-config.h is not.
 //#define OBJC_INSTRUMENTED
 
+// H.M.:
+#ifndef SUBJECTIVE
+#   define SUBJECTIVE 0
+#endif
+
 #endif

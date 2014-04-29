@@ -601,7 +601,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = NO;
-				LastUpgradeCheck = 0440;
+				LastUpgradeCheck = 0510;
 			};
 			buildConfigurationList = 1DEB914E08733D8E0010E9CD /* Build configuration list for PBXProject "objc" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -814,6 +814,7 @@
 					"$(DSTROOT)/usr/local/include/**",
 					"$(CONFIGURATION_BUILD_DIR)/usr/include/**",
 					"$(CONFIGURATION_BUILD_DIR)/usr/local/include/**",
+					../include,
 				);
 				INSTALL_PATH = /usr/lib;
 				ORDER_FILE = libobjc.order;
@@ -824,13 +825,13 @@
 				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = "-lc++abi";
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = "-l_BUILD_objc-simulator_TARGET_INSTEAD";
 				"OTHER_LDFLAGS[sdk=macosx*]" = (
-					"-lCrashReporterClient",
 					"-lauto",
 					"-lc++abi",
 				);
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/objc;
 				PRODUCT_NAME = objc.A;
 				PUBLIC_HEADERS_FOLDER_PATH = /usr/include/objc;
+				SDKROOT = macosx10.8;
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols;
 			};
 			name = Debug;
@@ -848,6 +849,7 @@
 					"$(DSTROOT)/usr/local/include/**",
 					"$(CONFIGURATION_BUILD_DIR)/usr/include/**",
 					"$(CONFIGURATION_BUILD_DIR)/usr/local/include/**",
+					../include,
 				);
 				INSTALL_PATH = /usr/lib;
 				ORDER_FILE = libobjc.order;
@@ -858,13 +860,13 @@
 				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = "-lc++abi";
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = "-l_BUILD_objc-simulator_TARGET_INSTEAD";
 				"OTHER_LDFLAGS[sdk=macosx*]" = (
-					"-lCrashReporterClient",
 					"-lauto",
 					"-lc++abi",
 				);
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/objc;
 				PRODUCT_NAME = objc.A;
 				PUBLIC_HEADERS_FOLDER_PATH = /usr/include/objc;
+				SDKROOT = macosx10.8;
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols;
 			};
 			name = Release;
@@ -875,14 +877,17 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				"CLANG_CXX_LIBRARY[sdk=iphoneos*]" = "libstdc++";
 				"CLANG_CXX_LIBRARY[sdk=iphonesimulator*]" = "libstdc++";
-				CLANG_OBJC_RUNTIME = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				CLANG_OBJC_RUNTIME = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = "OS_OBJECT_USE_OBJC=0";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"OS_OBJECT_USE_OBJC=0",
+					"SUBJECTIVE=1",
+				);
 				GCC_STRICT_ALIASING = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -891,6 +896,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_SHADOW = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				SDKROOT = macosx10.8;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				WARNING_CFLAGS = (
 					"-Wall",
@@ -909,8 +915,8 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				"CLANG_CXX_LIBRARY[sdk=iphoneos*]" = "libstdc++";
 				"CLANG_CXX_LIBRARY[sdk=iphonesimulator*]" = "libstdc++";
-				CLANG_OBJC_RUNTIME = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
+				CLANG_OBJC_RUNTIME = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				GCC_ENABLE_CPP_RTTI = NO;
@@ -918,6 +924,7 @@
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"OS_OBJECT_USE_OBJC=0",
 					"NDEBUG=1",
+					"SUBJECTIVE=1",
 				);
 				GCC_STRICT_ALIASING = YES;
 				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
@@ -929,6 +936,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				"OTHER_CFLAGS[arch=i386]" = "-momit-leaf-frame-pointer";
 				"OTHER_CFLAGS[arch=x86_64]" = "-momit-leaf-frame-pointer";
+				SDKROOT = macosx10.8;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
 				WARNING_CFLAGS = (
 					"-Wall",

@@ -119,7 +119,7 @@ static inline int ARRSpinLockTry(ARRSpinLock *l)
 #endif
 
 
-#if !TARGET_OS_IPHONE
+#if !TARGET_OS_IPHONE && !SUBJECTIVE
 #   include <CrashReporterClient.h>
 #else
     // CrashReporterClient not yet available on iOS

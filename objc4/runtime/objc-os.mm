@@ -991,7 +991,7 @@ bool crashlog_header_name_string(const char *name)
 }
 
 
-#if TARGET_OS_IPHONE
+#if TARGET_OS_IPHONE || SUBJECTIVE
 
 const char *__crashreporter_info__ = NULL;
 
