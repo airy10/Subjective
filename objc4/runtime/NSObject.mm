@@ -1109,7 +1109,10 @@ _objc_rootAlloc(Class cls)
         return class_createInstance(cls, 0);
     }
 #endif
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-method-access"
     return [cls allocWithZone: nil];
+#pragma clang diagnostic pop
 }
 
 void
@@ -1366,7 +1369,10 @@ void
 _objc_deallocOnMainThreadHelper(void *context)
 {
     id obj = (id)context;
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-method-access"
     [obj dealloc];
+#pragma clang diagnostic pop
 }
 
 #undef objc_retainedObject
