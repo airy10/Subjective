@@ -1,8 +1,8 @@
-SUBJECT*IF*: Objective-C Runtime for Windows
+SUBJECTIVE: Objective-C Runtime for Windows
 ============================================
 
 
-### This is a work in progress. Please be *impatient*, contribute!
+This is a work in progress. Please be *impatient*, contribute!
 ----------------------------------------------------------------------
 
 • MinGW cross-compile environment for OS X
