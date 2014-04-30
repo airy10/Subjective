@@ -824,10 +824,7 @@
 				);
 				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = "-lc++abi";
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = "-l_BUILD_objc-simulator_TARGET_INSTEAD";
-				"OTHER_LDFLAGS[sdk=macosx*]" = (
-					"-lauto",
-					"-lc++abi",
-				);
+				"OTHER_LDFLAGS[sdk=macosx*]" = "-lc++abi";
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/objc;
 				PRODUCT_NAME = objc.A;
 				PUBLIC_HEADERS_FOLDER_PATH = /usr/include/objc;
@@ -859,10 +856,7 @@
 				);
 				"OTHER_LDFLAGS[sdk=iphoneos*][arch=*]" = "-lc++abi";
 				"OTHER_LDFLAGS[sdk=iphonesimulator*][arch=*]" = "-l_BUILD_objc-simulator_TARGET_INSTEAD";
-				"OTHER_LDFLAGS[sdk=macosx*]" = (
-					"-lauto",
-					"-lc++abi",
-				);
+				"OTHER_LDFLAGS[sdk=macosx*]" = "-lc++abi";
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/objc;
 				PRODUCT_NAME = objc.A;
 				PUBLIC_HEADERS_FOLDER_PATH = /usr/include/objc;

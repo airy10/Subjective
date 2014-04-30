@@ -604,9 +604,11 @@ LGetImpExit:
 	movl    selector(%esp), %ecx
 	movl	self(%esp), %eax
 
+#if SUPPORT_IGNORED_SELECTOR_CONSTANT
 // check whether selector is ignored
 	cmpl    $ kIgnore, %ecx
 	je      LMsgSendDone		// return self from %eax
+#endif
 
 // check whether receiver is nil 
 	testl	%eax, %eax
@@ -667,9 +669,11 @@ LMsgSendExit:
 	movl    selector(%esp), %ecx
 	movl	class(%eax), %edx	// struct objc_super->class
 
+#if SUPPORT_IGNORED_SELECTOR_CONSTANT
 // check whether selector is ignored
 	cmpl    $ kIgnore, %ecx
 	je      LMsgSendSuperIgnored	// return self from %eax
+#endif
 
 // search the cache (class in %edx)
 	CacheLookup WORD_RETURN, MSG_SENDSUPER, LMsgSendSuperCacheMiss
@@ -756,9 +760,11 @@ LMsgSendvArgsOK:
 	movl    selector(%esp), %ecx
 	movl	self(%esp), %eax
 
+#if SUPPORT_IGNORED_SELECTOR_CONSTANT
 // check whether selector is ignored
 	cmpl    $ kIgnore, %ecx
 	je      LMsgSendFpretDone	// return self from %eax
+#endif
 
 // check whether receiver is nil 
 	testl	%eax, %eax

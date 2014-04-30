@@ -37,7 +37,10 @@
 #include <sys/types.h>
 #include <sys/mman.h>
 #include <libkern/OSAtomic.h>
-#include <auto_zone.h>
+
+#if !SUBJECTIVE
+#   include <auto_zone.h>
+#endif
 
 #include <Block_private.h>
 #include <dispatch/private.h>

@@ -26,9 +26,14 @@
 
 #include <TargetConditionals.h>
 
+// H.M.:
+#ifndef SUBJECTIVE
+#   define SUBJECTIVE 0
+#endif
+
 // Define SUPPORT_GC=1 to enable garbage collection.
 // Be sure to edit OBJC_NO_GC in objc-auto.h as well.
-#if TARGET_OS_EMBEDDED  ||  TARGET_OS_IPHONE  ||  TARGET_OS_WIN32
+#if TARGET_OS_EMBEDDED  ||  TARGET_OS_IPHONE  ||  TARGET_OS_WIN32  ||  SUBJECTIVE
 #   define SUPPORT_GC 0
 #else
 #   define SUPPORT_GC 1
@@ -139,10 +144,5 @@
 // condition, but objc-class.h can not #include this file (objc-config.h)
 // because objc-class.h is public and objc-config.h is not.
 //#define OBJC_INSTRUMENTED
-
-// H.M.:
-#ifndef SUBJECTIVE
-#   define SUBJECTIVE 0
-#endif
 
 #endif
