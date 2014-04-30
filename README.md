@@ -1,6 +1,9 @@
-SUBJECTIVE: Objective-C Runtime for Windows
-===========================================
+SUBJECTIVE
+==========
 
+#### Objective-C Runtime for Windows
+
+------------------------------------------------------------------
 
 This is a work in progress. Please be *impatient*, contribute!
 
