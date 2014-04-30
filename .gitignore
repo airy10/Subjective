@@ -1,12 +1,11 @@
-# Apportable stuff
-.sconsign.dblite
-Release.final
-Release.generated
 
-# Build stuff
 build.log
 .svn
 build/ipa
+
+*.exe
+*.dll
+*.lib
 
 
 #########################
