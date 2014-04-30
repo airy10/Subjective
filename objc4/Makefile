@@ -8,7 +8,7 @@ STRIP=$(PREFIX)/bin/$(TRIPLE)-strip
 ISYSTEM=$(PREFIX)/$(TRIPLE)/include
 
 BUILD_DIR=build
-BUILD_OBJS=$(BUILD_DIR)/$(TRIPLE)/objects
+BUILD_OBJ_DIR=$(BUILD_DIR)/$(TRIPLE)/objects
 
 CC=clang
 
@@ -20,21 +20,24 @@ CC_OPTS= \
 LD_OPTS=
 
 PRODUCT=test.exe
-OBJS=$(BUILD_OBJS)/test.obj
+OBJS=$(BUILD_OBJ_DIR)/test.obj
 
-all: $(BUILD_OBJS) $(PRODUCT)
 
-$(BUILD_OBJS):
-	mkdir -p $(BUILD_OBJS)
+all: $(BUILD_OBJ_DIR) $(PRODUCT)
 
-$(BUILD_OBJS)/%.s: %.mm
+
+$(BUILD_OBJ_DIR):
+	mkdir -p $(BUILD_OBJ_DIR)
+
+$(BUILD_OBJ_DIR)/%.s: %.mm
 	$(CC) $(CC_OPTS) -S $< -o $@
 
-$(BUILD_OBJS)/%.obj: $(BUILD_OBJS)/%.s
+$(BUILD_OBJ_DIR)/%.obj: $(BUILD_OBJ_DIR)/%.s
 	$(AS) $(AS_OPTS) -c $< -o $@
 
 $(PRODUCT): $(OBJS)
 	$(LD) $(LD_OPTS) $< -o $@
 
+
 clean:
-	rm -f *.exe $(BUILD_OBJS)/*
+	rm -f *.exe $(BUILD_OBJ_DIR)/*
