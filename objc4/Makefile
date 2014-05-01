@@ -1,43 +1,51 @@
 
-TRIPLE=i686-w64-mingw32
-PREFIX=/usr/local/
-CC=/usr/bin/clang
-AS=$(PREFIX)/bin/$(TRIPLE)-gcc
-LD=$(PREFIX)/bin/$(TRIPLE)-gcc
-STRIP=$(PREFIX)/bin/$(TRIPLE)-strip
-ISYSTEM=$(PREFIX)/$(TRIPLE)/include
+TRIPLE=i686-pc-win32
 
 BUILD_DIR=build
 BUILD_OBJ_DIR=$(BUILD_DIR)/$(TRIPLE)/objects
 
-CC=clang
+TARGET=-target $(TRIPLE)
+INCLUDE= -I../include -I../include/objc \
+	-isystem /usr/local/i686-w64-mingw32/include \
+	-isystem /usr/local/lib/gcc/i686-w64-mingw32/4.9.0/include \
+	-isystem /usr/local/i686-w64-mingw32/include/c++/4.9.0/ \
+	-isystem /usr/local/i686-w64-mingw32/include/c++/4.9.0/i686-w64-mingw32
 
-CC_OPTS= \
-	-cc1 -triple $(TRIPLE) \
-	-O2 \
-	-isystem $(ISYSTEM)
+DEFINES=-DSUBJECTIVE=1 -D_X86_
 
+CC=/usr/bin/clang
+CC_OPTS= $(TARGET) \
+	-std=c++03 \
+	-nostdinc -fobjc-runtime=macosx -m32 \
+	-Os \
+	$(DEFINES) $(INCLUDE)
+
+
+LD=/usr/local/bin/i686-w64-mingw32-gcc
 LD_OPTS=
 
 PRODUCT=test.exe
-OBJS=$(BUILD_OBJ_DIR)/test.obj
+OBJS= \
+	$(BUILD_OBJ_DIR)/test.o \
+	$(BUILD_OBJ_DIR)/objc-msg-i386.o \
 
 
 all: $(BUILD_OBJ_DIR) $(PRODUCT)
 
-
 $(BUILD_OBJ_DIR):
 	mkdir -p $(BUILD_OBJ_DIR)
-
-$(BUILD_OBJ_DIR)/%.s: %.mm
-	$(CC) $(CC_OPTS) -S $< -o $@
-
-$(BUILD_OBJ_DIR)/%.obj: $(BUILD_OBJ_DIR)/%.s
-	$(AS) $(AS_OPTS) -c $< -o $@
 
 $(PRODUCT): $(OBJS)
 	$(LD) $(LD_OPTS) $< -o $@
 
+$(BUILD_OBJ_DIR)/test.o: test.mm
+	$(CC) $(CC_OPTS) -c $< -o $@
+
+$(BUILD_OBJ_DIR)/objc-msg-i386.o: runtime/Messengers.subproj/objc-msg-i386.s
+	$(CC) $(CC_OPTS) -c $< -o $@
+
+$(BUILD_OBJ_DIR)/%.o: runtime/%.mm
+	$(CC) $(CC_OPTS) -c $< -o $@
 
 clean:
-	rm -f *.exe $(BUILD_OBJ_DIR)/*
+	rm -f $(PRODUCT) $(BUILD_OBJ_DIR)/*

@@ -162,8 +162,8 @@ static inline int ARRSpinLockTry(ARRSpinLock *l)
 
 #elif TARGET_OS_WIN32
 
-#   define WINVER 0x0501		// target Windows XP and later
-#   define _WIN32_WINNT 0x0501	// target Windows XP and later
+// #   define WINVER 0x0501		// target Windows XP and later
+// #   define _WIN32_WINNT 0x0501	// target Windows XP and later
 #   define WIN32_LEAN_AND_MEAN
     // hack: windef.h typedefs BOOL as int
 #   define BOOL WINBOOL

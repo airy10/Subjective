@@ -40,14 +40,14 @@
 #endif
 
 // Define SUPPORT_ENVIRON=1 to enable getenv().
-#if ((TARGET_OS_EMBEDDED  ||  TARGET_OS_IPHONE)  &&  !TARGET_IPHONE_SIMULATOR)  &&  defined(NDEBUG)
+#if ((TARGET_OS_EMBEDDED  ||  TARGET_OS_IPHONE)  &&  !TARGET_IPHONE_SIMULATOR)  &&  defined(NDEBUG)  ||  SUBJECTIVE
 #   define SUPPORT_ENVIRON 0
 #else
 #   define SUPPORT_ENVIRON 1
 #endif
 
 // Define SUPPORT_ZONES=1 to enable malloc zone support in NXHashTable.
-#if TARGET_OS_EMBEDDED  ||  TARGET_OS_IPHONE
+#if TARGET_OS_EMBEDDED  ||  TARGET_OS_IPHONE  ||  SUBJECTIVE
 #   define SUPPORT_ZONES 0
 #else
 #   define SUPPORT_ZONES 1
@@ -61,7 +61,7 @@
 #endif
 
 // Define SUPPORT_PREOPT=1 to enable dyld shared cache optimizations
-#if TARGET_OS_WIN32  ||  TARGET_IPHONE_SIMULATOR
+#if TARGET_OS_WIN32  ||  TARGET_IPHONE_SIMULATOR  ||  SUBJECTIVE
 #   define SUPPORT_PREOPT 0
 #else
 #   define SUPPORT_PREOPT 1

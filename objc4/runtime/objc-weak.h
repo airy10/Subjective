@@ -23,6 +23,7 @@
 
 #include <objc/objc.h>
 #include "objc-config.h"
+#include "objc-os.h"
 
 __BEGIN_DECLS
 

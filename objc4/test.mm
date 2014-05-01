@@ -1,7 +1,21 @@
 #include <stdio.h>
 
+#include "Foundation/NSObject.h"
+
+
+/*
+@interface MyObject : NSObject
+@end
+
+
+@implementation MyObject
+@end
+*/
+
 int main()
 {
-	printf("Hello?\n");
+	printf("EHLO\n");
+	NSObject* o = [[NSObject alloc] init];
+	o = nil;
 	return 0;
 }
