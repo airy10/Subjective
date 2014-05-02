@@ -30,6 +30,16 @@
 #include "objc-private.h"
 #include "objc-loadmethod.h"
 
+
+#if SUBJECTIVE
+
+// These are required by libdispatch.dylib
+OBJC_EXPORT malloc_zone_t *objc_collectableZone(void) { return NULL; }
+OBJC_EXPORT BOOL objc_collectingEnabled(void) { return 0; }
+
+#endif
+
+
 #if TARGET_OS_WIN32
 
 #include "objc-runtime-old.h"
