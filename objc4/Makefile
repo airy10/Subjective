@@ -17,7 +17,7 @@ CC_OTHER=-Wno-deprecated-objc-pointer-introspection -Wno-deprecated-objc-isa-usa
 
 CC = /usr/bin/clang
 C_OPTS = $(TARGET) \
-	-nostdinc -fblocks -fobjc-runtime=macosx \
+	-nostdinc -fobjc-runtime=macosx \
 	-Os \
 	$(DEFINES) $(INCLUDE) $(CC_OTHER)
 CC_OPTS = $(C_OPTS) -std=gnu99
@@ -50,10 +50,7 @@ $(PRODUCT): $(OBJS)
 	$(LD) $(LD_OPTS) $^ -o $@
 
 $(BUILD_OBJ_DIR)/test.o: test.mm
-	$(CC) $(CXX_OPTS) -c $< -o $@
-
-# $(BUILD_OBJ_DIR)/objc-msg-i386.o: runtime/Messengers.subproj/objc-msg-i386.s
-# 	$(AS) $(AS_OPTS) -c $< -o $@
+	$(CC) $(CXX_OPTS) -fobjc-arc -c $< -o $@
 
 $(BUILD_OBJ_DIR)/objc-msg-win32.o: runtime/Messengers.subproj/objc-msg-win32.mm
 	$(CC) $(CXX_OPTS) -c $< -o $@

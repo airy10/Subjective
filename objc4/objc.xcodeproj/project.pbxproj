@@ -492,6 +492,7 @@
 				MACH_O_TYPE = mh_dylib;
 				ORDER_FILE = libobjc.order;
 				OTHER_CFLAGS = (
+					"-fno-blocks",
 					"-fdollars-in-identifiers",
 					"$(OTHER_CFLAGS)",
 				);
@@ -538,6 +539,7 @@
 				MACH_O_TYPE = mh_dylib;
 				ORDER_FILE = libobjc.order;
 				OTHER_CFLAGS = (
+					"-fno-blocks",
 					"-fdollars-in-identifiers",
 					"$(OTHER_CFLAGS)",
 				);

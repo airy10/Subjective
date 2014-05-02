@@ -658,7 +658,10 @@ extern char *encoding_copyArgumentType(const char *t, unsigned int index);
 extern void _destroySyncCache(struct SyncCache *cache);
 
 // arr
+#if ARR_LOGGING
 extern void (^objc_arr_log)(const char *, id param);
+#endif
+
 extern void arr_init(void);
 extern id objc_autoreleaseReturnValue(id obj);
 

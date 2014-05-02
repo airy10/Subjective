@@ -146,4 +146,7 @@
 // because objc-class.h is public and objc-config.h is not.
 //#define OBJC_INSTRUMENTED
 
+// ARR_LOGGING requires block support
+#define ARR_LOGGING 0
+
 #endif

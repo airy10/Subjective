@@ -184,8 +184,6 @@ void _objc_setBadAllocHandler(id(*newHandler)(Class))
 }
 
 
-#define ARR_LOGGING 0
-
 #if ARR_LOGGING
 struct {
     int retains;
