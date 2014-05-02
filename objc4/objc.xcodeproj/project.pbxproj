@@ -41,7 +41,6 @@
 		838486150D6D68A200CEA253 /* Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 838485EE0D6D68A200CEA253 /* Object.m */; };
 		8384861F0D6D68A800CEA253 /* Protocol.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838486190D6D68A800CEA253 /* Protocol.mm */; };
 		838486250D6D68F000CEA253 /* List.m in Sources */ = {isa = PBXBuildFile; fileRef = 838486230D6D68F000CEA253 /* List.m */; };
-		83B1A8BE0FF1AC0D0019EA5B /* objc-msg-simulator-i386.s in Sources */ = {isa = PBXBuildFile; fileRef = 83B1A8BC0FF1AC0D0019EA5B /* objc-msg-simulator-i386.s */; };
 		83EB007B121C9EC200B92C16 /* objc-sel-table.s in Sources */ = {isa = PBXBuildFile; fileRef = 83EB007A121C9EC200B92C16 /* objc-sel-table.s */; };
 		87BB4EA70EC39854005D08E1 /* objc-probes.d in Sources */ = {isa = PBXBuildFile; fileRef = 87BB4E900EC39633005D08E1 /* objc-probes.d */; };
 		9672F7EE14D5F488007CEC96 /* NSObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9672F7ED14D5F488007CEC96 /* NSObject.mm */; };
@@ -79,6 +78,8 @@
 		3622D19419117D9A003AC4F8 /* objc-test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "objc-test"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3622D19D1911842A003AC4F8 /* test.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = test.mm; sourceTree = "<group>"; };
 		362901AF191344BE00974216 /* objc-msg-win32.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-msg-win32.mm"; path = "runtime/Messengers.subproj/objc-msg-win32.mm"; sourceTree = "<group>"; };
+		36EC54161913E98000D90C51 /* objc-win32.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = "objc-win32.c"; path = "runtime/objc-win32.c"; sourceTree = "<group>"; };
+		36EC54171913E98000D90C51 /* objc-win32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "objc-win32.h"; path = "runtime/objc-win32.h"; sourceTree = "<group>"; };
 		393CEABF0DC69E3E000B69DE /* objc-references.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-references.mm"; path = "runtime/objc-references.mm"; sourceTree = "<group>"; };
 		393CEAC50DC69E67000B69DE /* objc-references.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "objc-references.h"; path = "runtime/objc-references.h"; sourceTree = "<group>"; };
 		399BC72D1224831B007FBDF0 /* objc-externalref.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-externalref.mm"; path = "runtime/objc-externalref.mm"; sourceTree = "<group>"; };
@@ -265,6 +266,8 @@
 		838485B20D6D67F900CEA253 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				36EC54161913E98000D90C51 /* objc-win32.c */,
+				36EC54171913E98000D90C51 /* objc-win32.h */,
 				BC8B5D1212D3D48100C78A5B /* libauto.dylib */,
 				830F2AA50D7394C200392440 /* markgc.c */,
 				838485B40D6D683300CEA253 /* APPLE_LICENSE */,
@@ -458,7 +461,6 @@
 				E8923DA3116AB2820071B552 /* a2a3-blocktramps-i386.s in Sources */,
 				E8923DA4116AB2820071B552 /* a2a3-blocktramps-x86_64.s in Sources */,
 				E8923DA5116AB2820071B552 /* objc-block-trampolines.mm in Sources */,
-				83B1A8BE0FF1AC0D0019EA5B /* objc-msg-simulator-i386.s in Sources */,
 				83EB007B121C9EC200B92C16 /* objc-sel-table.s in Sources */,
 				8383A3A3122600E9009290B8 /* a1a2-blocktramps-arm.s in Sources */,
 				8383A3A4122600E9009290B8 /* a2a3-blocktramps-arm.s in Sources */,
@@ -713,6 +715,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;

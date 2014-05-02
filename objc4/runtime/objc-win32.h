@@ -1,5 +1,9 @@
-#ifndef _OBJC_RT_H_
-#define _OBJC_RT_H_
+#ifndef _OBJC_WIN32_H_
+#define _OBJC_WIN32_H_
+
+#include <TargetConditionals.h>
+
+#if TAGRET_OS_WIN32
 
 #include <objc/objc-api.h>
 
@@ -21,5 +25,7 @@ typedef struct {
 OBJC_EXPORT void *_objc_init_image(HMODULE image, const objc_sections *sects);
 OBJC_EXPORT void _objc_load_image(HMODULE image, void *hinfo);
 OBJC_EXPORT void _objc_unload_image(HMODULE image, void *hinfo);
+
+#endif
 
 #endif
