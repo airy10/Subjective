@@ -24,6 +24,14 @@
 #include <TargetConditionals.h>
 #if defined(__i386__)  &&  !TARGET_IPHONE_SIMULATOR
 
+/* H.M. */
+
+#if SUBJECTIVE
+#   define private_extern extern
+#   define cstring text
+#endif
+
+
 /********************************************************************
  ********************************************************************
  **
