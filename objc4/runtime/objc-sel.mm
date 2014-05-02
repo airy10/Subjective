@@ -30,8 +30,11 @@
 
 #include "objc.h"
 #include "objc-private.h"
-#include "objc-auto.h"
 #include "objc-sel-set.h"
+
+#if SUPPORT_GC
+#   include "objc-auto.h"
+#endif
 
 #if SUPPORT_PREOPT
 #include <objc-shared-cache.h>

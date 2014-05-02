@@ -27,9 +27,12 @@
 #include <libkern/OSAtomic.h>
 
 #include "objc-private.h"
-#include "objc-auto.h"
 #include "runtime.h"
 #include "objc-accessors.h"
+
+#if SUPPORT_GC
+#   include "objc-auto.h"
+#endif
 
 // stub interface declarations to make compiler happy.
 

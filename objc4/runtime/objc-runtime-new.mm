@@ -6632,7 +6632,11 @@ _object_copyFromZone(id oldObj, size_t extraBytes, void *zone)
     if (!obj) return nil;
 
     // fixme this doesn't handle C++ ivars correctly (#4619414)
+#if SUPPORT_GC
     objc_memmove_collectable(obj, oldObj, size);
+#else
+	memmove(obj, oldObj, size);
+#endif
 
 #if SUPPORT_GC
     if (UseGC)

@@ -42,7 +42,9 @@
 #include "objc-internal.h"
 #include "objc-abi.h"
 
-#include "objc-auto.h"
+#if SUPPORT_GC
+#   include "objc-auto.h"
+#endif
 
 #define __APPLE_API_PRIVATE
 #include "objc-gdb.h"

@@ -158,8 +158,11 @@
 
 #include "objc-private.h"
 #include "objc-abi.h"
-#include "objc-auto.h"
 #include <objc/message.h>
+
+#if SUPPORT_GC
+#   include "objc-auto.h"
+#endif
 
 
 /* overriding the default object allocation and error handling routines */

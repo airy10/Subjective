@@ -35,6 +35,7 @@
 // Be sure to edit OBJC_NO_GC in objc-auto.h as well.
 #if TARGET_OS_EMBEDDED  ||  TARGET_OS_IPHONE  ||  TARGET_OS_WIN32  ||  SUBJECTIVE
 #   define SUPPORT_GC 0
+#   define OBJC_NO_GC
 #else
 #   define SUPPORT_GC 1
 #endif
