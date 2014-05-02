@@ -205,8 +205,6 @@ static inline int ARRSpinLockTry(ARRSpinLock *l)
 #   define OBJC_RUNTIME_OBJC_EXCEPTION_RETHROW() do {} while(0)  
 #   define OBJC_RUNTIME_OBJC_EXCEPTION_THROW(arg0) do {} while(0)
 
-#   define DebuggerMode 0
-
 #else
 #   error unknown OS
 #endif
@@ -268,27 +266,10 @@ extern void _objc_fatal(const char *fmt, ...) __attribute__((noreturn, format (p
 
 // OS compatibility
 
-#define strdup _strdup
-
-#define issetugid() 0
-
-#define MIN(x, y) ((x) < (y) ? (x) : (y))
-
 static __inline void bcopy(const void *src, void *dst, size_t size) { memcpy(dst, src, size); }
 static __inline void bzero(void *dst, size_t size) { memset(dst, 0, size); }
 
 int asprintf(char **dstp, const char *format, ...);
-
-typedef void * malloc_zone_t;
-
-static __inline malloc_zone_t malloc_default_zone(void) { return (malloc_zone_t)-1; }
-static __inline void *malloc_zone_malloc(malloc_zone_t z, size_t size) { return malloc(size); }
-static __inline void *malloc_zone_calloc(malloc_zone_t z, size_t size, size_t count) { return calloc(size, count); }
-static __inline void *malloc_zone_realloc(malloc_zone_t z, void *p, size_t size) { return realloc(p, size); }
-static __inline void malloc_zone_free(malloc_zone_t z, void *p) { free(p); }
-static __inline malloc_zone_t malloc_zone_from_ptr(const void *p) { return (malloc_zone_t)-1; }
-static __inline size_t malloc_size(const void *p) { return _msize((void*)p); /* fixme invalid pointer check? */ }
-
 
 // AssertMacros
 
@@ -656,10 +637,22 @@ static inline void tls_set_direct(tls_key_t k, void *value)
 typedef pthread_mutex_t mutex_t;
 #define MUTEX_INITIALIZER PTHREAD_MUTEX_INITIALIZER;
 
+#if SUPPORT_DEBUGGER_MODE
+
 extern int DebuggerMode;
 extern void gdb_objc_debuggerModeFailure(void);
 extern BOOL isManagedDuringDebugger(void *lock);
 extern BOOL isLockedDuringDebugger(void *lock);
+
+#else
+
+#define DebuggerMode 0
+static inline BOOL isManagedDuringDebugger(void *m) { return NO; }
+static inline BOOL isLockedDuringDebugger(void *m) { return NO; }
+static inline void gdb_objc_debuggerModeFailure() { }
+
+#endif
+
 
 static inline int _mutex_lock_nodebug(mutex_t *m) { 
     if (DebuggerMode  &&  isManagedDuringDebugger(m)) {

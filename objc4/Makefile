@@ -6,7 +6,7 @@ BUILD_DIR=build
 BUILD_OBJ_DIR=$(BUILD_DIR)/$(TRIPLE)/objects
 
 TARGET=-target $(TRIPLE)
-INCLUDE= -I../include -I../include/objc \
+INCLUDE= -Iinclude -I../include -I../include/objc \
 	-isystem /usr/local/$(MINGW)/include \
 	-isystem /usr/local/lib/gcc/$(MINGW)/4.9.0/include \
 	-isystem /usr/local/$(MINGW)/include/c++/4.9.0/ \
@@ -38,7 +38,7 @@ OBJS= \
 	$(BUILD_OBJ_DIR)/objc-msg-win32.o \
 	$(BUILD_OBJ_DIR)/objc-errors.o \
 	$(BUILD_OBJ_DIR)/objc-class.o \
-	# $(BUILD_OBJ_DIR)/objc-runtime-new.o \
+	$(BUILD_OBJ_DIR)/objc-runtime-new.o \
 
 
 all: $(BUILD_OBJ_DIR) $(PRODUCT)

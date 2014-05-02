@@ -308,7 +308,7 @@ extern mutex_t methodListLock;
 extern int startDebuggerMode(void);
 extern void endDebuggerMode(void);
 
-#if defined(NDEBUG)  ||  TARGET_OS_WIN32
+#if defined(NDEBUG)  ||  !SUPPORT_DEBUGGER_MODE
 
 #define mutex_lock(m)             _mutex_lock_nodebug(m)
 #define mutex_try_lock(m)         _mutex_try_lock_nodebug(m)

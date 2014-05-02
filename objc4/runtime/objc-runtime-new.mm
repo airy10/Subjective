@@ -93,6 +93,8 @@ void lock_init(void)
 }
 
 
+#if SUPPORT_DEBUGGER_MODE
+
 /***********************************************************************
 * startDebuggerMode
 * Attempt to acquire some locks for debugger mode.
@@ -242,6 +244,9 @@ BOOL isWritingDuringDebugger(rwlock_t *lock)
 
     return NO;
 }
+
+// SUPPORT_DEBUGGER_MODE
+#endif
 
 
 /***********************************************************************

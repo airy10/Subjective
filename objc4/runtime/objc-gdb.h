@@ -73,6 +73,8 @@ OBJC_EXPORT void gdb_objc_trampolines_changed(objc_trampoline_header *thdr)
 #endif
 
 
+#if SUPPORT_DEBUGGER_MODE
+
 /***********************************************************************
 * Debugger mode.
 **********************************************************************/
@@ -112,6 +114,9 @@ OBJC_EXPORT Class gdb_class_getClass(Class cls)
 // Same as gdb_class_getClass(object_getClass(cls)).
 OBJC_EXPORT Class gdb_object_getClass(id obj)
     __OSX_AVAILABLE_STARTING(__MAC_10_7, __IPHONE_4_3);
+
+// SUPPORT_DEBUGGER_MODE
+#endif
 
 
 /***********************************************************************
