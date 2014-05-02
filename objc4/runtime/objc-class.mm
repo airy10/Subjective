@@ -1117,7 +1117,11 @@ void _free_internal(void *ptr)
 size_t _malloc_size_internal(void *ptr)
 {
     malloc_zone_t *zone = _objc_internal_zone();
+#if SUBJECTIVE
+	return malloc_size(ptr);
+#else
     return zone->size(zone, ptr);
+#endif
 }
 
 Class _calloc_class(size_t size)
@@ -1258,6 +1262,14 @@ _class_createInstancesFromZone(Class cls, size_t extraBytes, void *zone,
     // CF requires all objects be at least 16 bytes.
     if (size < 16) size = 16;
 
+#if SUBJECTIVE
+	assert(zone == NULL);
+	size_t mem_size = (size + 3) & ~3uL;
+	char* p = (char*)calloc(mem_size, num_requested);
+	num_allocated = p ? num_requested : 0;
+	for (unsigned i = 0 ; i < num_allocated; i++, p += mem_size)
+		results[i] = (id)p;
+#else
 #if SUPPORT_GC
     if (UseGC) {
         num_allocated = 
@@ -1274,6 +1286,7 @@ _class_createInstancesFromZone(Class cls, size_t extraBytes, void *zone,
             bzero(results[i], size);
         }
     }
+#endif
 
     // Construct each object, and delete any that fail construction.
 

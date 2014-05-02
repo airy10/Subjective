@@ -13,13 +13,14 @@ INCLUDE= -I../include -I../include/objc \
 	-isystem /usr/local/$(MINGW)/include/c++/4.9.0/$(MINGW)
 
 DEFINES=-DSUBJECTIVE=1 -D_X86_
+CC_OTHER=-Wno-deprecated-objc-pointer-introspection -Wno-deprecated-objc-isa-usage -Wno-inline-new-delete -Wno-cast-of-sel-type -Wno-objc-root-class -Wno-duplicate-decl-specifier
 
 CC=/usr/bin/clang
 CC_OPTS= $(TARGET) \
 	-std=c++03 \
-	-nostdinc -fobjc-runtime=macosx -m32 \
+	-nostdinc -fblocks -fobjc-runtime=macosx \
 	-Os \
-	$(DEFINES) $(INCLUDE)
+	$(DEFINES) $(INCLUDE) $(CC_OTHER)
 
 AS=/usr/local/bin/$(MINGW)-gcc -c
 AS=$(CC)

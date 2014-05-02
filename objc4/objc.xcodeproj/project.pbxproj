@@ -82,6 +82,7 @@
 /* Begin PBXFileReference section */
 		3622D19419117D9A003AC4F8 /* objc-test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "objc-test"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3622D19D1911842A003AC4F8 /* test.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = test.mm; sourceTree = "<group>"; };
+		362901AE19131D0800974216 /* malloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = malloc.h; path = ../malloc/malloc.h; sourceTree = "<group>"; };
 		393CEABF0DC69E3E000B69DE /* objc-references.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-references.mm"; path = "runtime/objc-references.mm"; sourceTree = "<group>"; };
 		393CEAC50DC69E67000B69DE /* objc-references.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "objc-references.h"; path = "runtime/objc-references.h"; sourceTree = "<group>"; };
 		399BC72D1224831B007FBDF0 /* objc-externalref.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-externalref.mm"; path = "runtime/objc-externalref.mm"; sourceTree = "<group>"; };
@@ -278,6 +279,7 @@
 		838485C60D6D687700CEA253 /* Public Headers */ = {
 			isa = PBXGroup;
 			children = (
+				362901AE19131D0800974216 /* malloc.h */,
 				838485BB0D6D687300CEA253 /* maptable.h */,
 				838485BD0D6D687300CEA253 /* message.h */,
 				838485C80D6D68A200CEA253 /* objc-api.h */,

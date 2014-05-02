@@ -210,10 +210,10 @@ OBJC_EXPORT id objc_allocate_object(Class cls, int extra)
 
 /* Non-GC declarations */
 
-static OBJC_INLINE void objc_collect(unsigned long options __unused) { }
+static OBJC_INLINE void objc_collect(unsigned long options) { }
 static OBJC_INLINE BOOL objc_collectingEnabled(void) { return NO; }
-static OBJC_INLINE void objc_setCollectionThreshold(size_t threshold __unused) { }
-static OBJC_INLINE void objc_setCollectionRatio(size_t ratio __unused) { }
+static OBJC_INLINE void objc_setCollectionThreshold(size_t threshold) { }
+static OBJC_INLINE void objc_setCollectionRatio(size_t ratio) { }
 static OBJC_INLINE void objc_startCollectorThread(void) { }
 
 #if __has_feature(objc_arr)
@@ -270,13 +270,13 @@ static OBJC_INLINE id objc_assign_weak(id value, id *location)
 static OBJC_INLINE void *objc_memmove_collectable(void *dst, const void *src, size_t size) 
     { return memmove(dst, src, size); }
 
-static OBJC_INLINE void objc_finalizeOnMainThread(Class cls __unused) { }
-static OBJC_INLINE BOOL objc_is_finalized(void *ptr __unused) { return NO; }
-static OBJC_INLINE void objc_clear_stack(unsigned long options __unused) { }
+static OBJC_INLINE void objc_finalizeOnMainThread(Class cls) { }
+static OBJC_INLINE BOOL objc_is_finalized(void *ptr) { return NO; }
+static OBJC_INLINE void objc_clear_stack(unsigned long options) { }
 
 static OBJC_INLINE BOOL objc_collecting_enabled(void) { return NO; }
-static OBJC_INLINE void objc_set_collection_threshold(size_t threshold __unused) { } 
-static OBJC_INLINE void objc_set_collection_ratio(size_t ratio __unused) { } 
+static OBJC_INLINE void objc_set_collection_threshold(size_t threshold) { }
+static OBJC_INLINE void objc_set_collection_ratio(size_t ratio) { } 
 static OBJC_INLINE void objc_start_collector_thread(void) { }
 
 #if __has_feature(objc_arc)
