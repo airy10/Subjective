@@ -1,4 +1,5 @@
-#include "objc-private.h"
+#include <objc/objc-api.h>
+#include "../objc-private.h"
 
 // out-of-band parameter to objc_msgForward
 #define kFwdMsgSend 1
@@ -53,27 +54,27 @@ __declspec(naked) Method _cache_getMethod(Class cls, SEL sel, IMP objc_msgForwar
         mov esi, mask[edi]
         mov edx, ecx
         shr edx, 2
-SCAN:
+SCAN1:
         and edx, esi
         mov eax, buckets[edi][edx*4]
         test eax, eax
-        je MISS
+        je MISS1
         cmp ecx, method_name[eax]
-        je HIT
+        je HIT1
         add edx, 1
-        jmp SCAN
+        jmp SCAN1
 
-MISS:
+MISS1:
         xor eax, eax
         pop esi
         pop edi
         leave
         ret
 
-HIT:
+HIT1:
         mov ecx, FIRST_ARG
         cmp ecx, method_imp[eax]
-        je MISS
+        je MISS1
         pop esi
         pop edi
         leave
@@ -98,24 +99,24 @@ __declspec(naked) IMP _cache_getImp(Class cls, SEL sel)
         mov esi, mask[edi]
         mov edx, ecx
         shr edx, 2
-SCAN:
+SCAN2:
         and edx, esi
         mov eax, buckets[edi][edx*4]
         test eax, eax
-        je MISS
+        je MISS2
         cmp ecx, method_name[eax]
-        je HIT
+        je HIT2
         add edx, 1
-        jmp SCAN
+        jmp SCAN2
 
-MISS:
+MISS2:
         pop esi
         pop edi
         xor eax, eax
         leave
         ret
 
-HIT:
+HIT2:
         pop esi
         pop edi
         mov eax, method_imp[eax]
@@ -142,7 +143,7 @@ OBJC_EXPORT __declspec(naked) id objc_msgSend(id a, SEL b, ...)
 
         // check whether receiver is nil
         test eax, eax
-        je NIL
+        je NIL1
 
         // receiver (in eax) is non-nil: search the cache
         mov edx, isa[eax]
@@ -154,17 +155,17 @@ OBJC_EXPORT __declspec(naked) id objc_msgSend(id a, SEL b, ...)
         mov esi, mask[edi]
         mov edx, ecx
         shr edx, 2
-SCAN:
+SCAN3:
         and edx, esi
         mov eax, buckets[edi][edx*4]
         test eax, eax
-        je MISS
+        je MISS3
         cmp ecx, method_name[eax]
-        je HIT
+        je HIT3
         add edx, 1
-        jmp SCAN
+        jmp SCAN3
 
-HIT:
+HIT3:
         mov eax, method_imp[eax]
         pop esi
         pop edi
@@ -173,7 +174,7 @@ HIT:
         jmp eax
 
         // cache miss: search method lists
-MISS:
+MISS3:
         pop esi
         pop edi
         mov edx, SELF
@@ -190,7 +191,7 @@ MISS:
         jmp eax
 
         // message send to nil: return zero
-NIL:
+NIL1:
         // eax is already zero
         mov edx, 0
         leave
@@ -216,7 +217,7 @@ OBJC_EXPORT __declspec(naked) double objc_msgSend_fpret(id a, SEL b, ...)
 
         // check whether receiver is nil
         test eax, eax
-        je NIL
+        je NIL2
 
         // receiver (in eax) is non-nil: search the cache
         mov edx, isa[eax]
@@ -228,17 +229,17 @@ OBJC_EXPORT __declspec(naked) double objc_msgSend_fpret(id a, SEL b, ...)
         mov esi, mask[edi]
         mov edx, ecx
         shr edx, 2
-SCAN:
+SCAN4:
         and edx, esi
         mov eax, buckets[edi][edx*4]
         test eax, eax
-        je MISS
+        je MISS4
         cmp ecx, method_name[eax]
-        je HIT
+        je HIT4
         add edx, 1
-        jmp SCAN
+        jmp SCAN4
 
-HIT:
+HIT4:
         mov eax, method_imp[eax]
         pop esi
         pop edi
@@ -247,7 +248,7 @@ HIT:
         jmp eax
 
         // cache miss: search method lists
-MISS:
+MISS4:
         pop esi
         pop edi
         mov edx, SELF
@@ -264,7 +265,7 @@ MISS:
         jmp eax
 
         // message send to nil: return zero
-NIL:
+NIL2:
         fldz
         leave
         ret
@@ -296,17 +297,17 @@ OBJC_EXPORT __declspec(naked) id objc_msgSendSuper(struct objc_super *a, SEL b, 
         mov esi, mask[edi]
         mov edx, ecx
         shr edx, 2
-SCAN:
+SCAN5:
         and edx, esi
         mov eax, buckets[edi][edx*4]
         test eax, eax
-        je MISS
+        je MISS5
         cmp ecx, method_name[eax]
-        je HIT
+        je HIT5
         add edx, 1
-        jmp SCAN
+        jmp SCAN5
 
-HIT:
+HIT5:
         mov eax, method_imp[eax]
         pop esi
         pop edi
@@ -318,7 +319,7 @@ HIT:
         jmp eax
 
         // cache miss: search method lists
-MISS:
+MISS5:
 
         pop esi
         pop edi
@@ -340,7 +341,7 @@ MISS:
 }
 
 
-OBJC_EXPORT __declspec(naked) void objc_msgSend_stret(void)
+__declspec(naked) void objc_msgSend_stret(void)
 {
     __asm {
         push ebp
@@ -357,7 +358,7 @@ OBJC_EXPORT __declspec(naked) void objc_msgSend_stret(void)
 
         // check whether receiver is nil
         test eax, eax
-        je NIL
+        je NIL3
 
         // receiver (in eax) is non-nil: search the cache
         mov edx, isa[eax]
@@ -369,17 +370,17 @@ OBJC_EXPORT __declspec(naked) void objc_msgSend_stret(void)
         mov esi, mask[edi]
         mov edx, ecx
         shr edx, 2
-SCAN:
+SCAN6:
         and edx, esi
         mov eax, buckets[edi][edx*4]
         test eax, eax
-        je MISS
+        je MISS6
         cmp ecx, method_name[eax]
-        je HIT
+        je HIT6
         add edx, 1
-        jmp SCAN
+        jmp SCAN6
 
-HIT:
+HIT6:
         mov eax, method_imp[eax]
         pop esi
         pop edi
@@ -388,7 +389,7 @@ HIT:
         jmp eax
 
         // cache miss: search method lists
-MISS:
+MISS6:
         pop esi
         pop edi
         mov edx, SELF_STRET
@@ -405,7 +406,7 @@ MISS:
         jmp eax
 
         // message send to nil: return zero
-NIL:
+NIL3:
         // eax is already zero
         mov edx, 0
         leave
@@ -414,7 +415,7 @@ NIL:
 }
 
 
-OBJC_EXPORT __declspec(naked) id objc_msgSendSuper_stret(struct objc_super *a, SEL b, ...)
+__declspec(naked) id objc_msgSendSuper_stret(struct objc_super *a, SEL b, ...)
 {
     __asm {
         push ebp
@@ -438,17 +439,17 @@ OBJC_EXPORT __declspec(naked) id objc_msgSendSuper_stret(struct objc_super *a, S
         mov esi, mask[edi]
         mov edx, ecx
         shr edx, 2
-SCAN:
+SCAN7:
         and edx, esi
         mov eax, buckets[edi][edx*4]
         test eax, eax
-        je MISS
+        je MISS7
         cmp ecx, method_name[eax]
-        je HIT
+        je HIT7
         add edx, 1
-        jmp SCAN
+        jmp SCAN7
 
-HIT:
+HIT7:
         mov eax, method_imp[eax]
         pop esi
         pop edi
@@ -460,7 +461,7 @@ HIT:
         jmp eax
 
         // cache miss: search method lists
-MISS:
+MISS7:
 
         pop esi
         pop edi
@@ -491,7 +492,7 @@ OBJC_EXPORT __declspec(naked) id _objc_msgForward(id a, SEL b, ...)
     }
 }
 
-OBJC_EXPORT __declspec(naked) id _objc_msgForward_stret(id a, SEL b, ...)
+__declspec(naked) id _objc_msgForward_stret(id a, SEL b, ...)
 {
     __asm {
         mov ecx, _objc_forward_stret_handler
@@ -513,7 +514,7 @@ STRET:
 }
 
 
-OBJC_EXPORT __declspec(naked) void method_invoke(void)
+__declspec(naked) void method_invoke(void)
 {
     __asm {
         push ebp
@@ -530,7 +531,7 @@ OBJC_EXPORT __declspec(naked) void method_invoke(void)
 }
 
 
-OBJC_EXPORT __declspec(naked) void method_invoke_stret(void)
+__declspec(naked) void method_invoke_stret(void)
 {
     __asm {
         push ebp

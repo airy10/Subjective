@@ -83,7 +83,7 @@ OBJC_EXPORT void objc_msgSendSuper_stret(void /* struct objc_super *super, SEL o
 #else
 OBJC_EXPORT void objc_msgSend_stret(id self, SEL op, ...)
     __OSX_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
-OBJC_EXPORT void objc_msgSendSuper_stret(struct objc_super *super, SEL op, ...)
+OBJC_EXPORT id objc_msgSendSuper_stret(struct objc_super *super, SEL op, ...)
     __OSX_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
 #endif
 
@@ -169,7 +169,7 @@ OBJC_EXPORT void method_invoke(void /* id receiver, Method m, ... */ )
 OBJC_EXPORT void method_invoke_stret(void /* id receiver, Method m, ... */ ) 
     __OSX_AVAILABLE_STARTING(__MAC_10_5, __IPHONE_2_0);
 #else
-OBJC_EXPORT id method_invoke(id receiver, Method m, ...) 
+OBJC_EXPORT void method_invoke(id receiver, Method m, ...)
     __OSX_AVAILABLE_STARTING(__MAC_10_5, __IPHONE_2_0);
 OBJC_EXPORT void method_invoke_stret(id receiver, Method m, ...) 
     __OSX_AVAILABLE_STARTING(__MAC_10_5, __IPHONE_2_0);
@@ -194,12 +194,12 @@ OBJC_EXPORT void method_invoke_stret(id receiver, Method m, ...)
 #if !OBJC_OLD_DISPATCH_PROTOTYPES
 OBJC_EXPORT void _objc_msgForward(void /* id receiver, SEL sel, ... */ ) 
     __OSX_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
-OBJC_EXPORT void _objc_msgForward_stret(void /* id receiver, SEL sel, ... */ ) 
+OBJC_EXPORT void _objc_msgForward_stret(void /* id receiver, SEL sel, ... */ )
     __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_3_0);
 #else
 OBJC_EXPORT id _objc_msgForward(id receiver, SEL sel, ...) 
     __OSX_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_2_0);
-OBJC_EXPORT void _objc_msgForward_stret(id receiver, SEL sel, ...) 
+OBJC_EXPORT id _objc_msgForward_stret(id receiver, SEL sel, ...)
     __OSX_AVAILABLE_STARTING(__MAC_10_6, __IPHONE_3_0);
 #endif
 

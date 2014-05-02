@@ -68,7 +68,7 @@
 #endif
 
 // Define SUPPORT_DEBUGGER_MODE=1 to enable lock-avoiding execution for debuggers
-#if TARGET_OS_WIN32
+#if TARGET_OS_WIN32  ||  SUBJECTIVE
 #   define SUPPORT_DEBUGGER_MODE 0
 #else
 #   define SUPPORT_DEBUGGER_MODE 1

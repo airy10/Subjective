@@ -28,11 +28,12 @@
 
 #if __OBJC2__
 
+#include "objc-os.h"
 #include "objc-private.h"
 #include "objc-runtime-new.h"
 #include "objc-file.h"
 #include <objc/message.h>
-#include <mach/shared_region.h>
+// #include <mach/shared_region.h>
 
 #define newcls(cls) ((class_t *)cls)
 #define newmethod(meth) ((method_t *)meth)
@@ -64,7 +65,7 @@ static bool isAWZSelector(SEL sel);
 static void updateCustomRR_AWZ(class_t *cls, method_t *meth);
 static method_t *search_method_list(const method_list_t *mlist, SEL sel);
 
-id objc_noop_imp(id self, SEL _cmd __unused) {
+id objc_noop_imp(id self, SEL _cmd) {
     return self;
 }
 

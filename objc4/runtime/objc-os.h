@@ -205,6 +205,8 @@ static inline int ARRSpinLockTry(ARRSpinLock *l)
 #   define OBJC_RUNTIME_OBJC_EXCEPTION_RETHROW() do {} while(0)  
 #   define OBJC_RUNTIME_OBJC_EXCEPTION_THROW(arg0) do {} while(0)
 
+#   define DebuggerMode 0
+
 #else
 #   error unknown OS
 #endif
