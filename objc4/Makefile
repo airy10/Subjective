@@ -12,7 +12,7 @@ INCLUDE= -Iinclude -I../include -I../include/objc \
 	-isystem /usr/local/$(MINGW)/include/c++/4.9.0/ \
 	-isystem /usr/local/$(MINGW)/include/c++/4.9.0/$(MINGW)
 
-DEFINES=-DSUBJECTIVE=1 -D_X86_ -DBUILDING_OBJC -DOBJC_EXPORTS -D__WIN32__ -D_CRT_SECURE_NO_DEPRECATE
+DEFINES=-DSUBJECTIVE=1 -D_X86_ -DBUILDING_OBJC -DOBJC_EXPORTS -D__WIN32__ -DSUBJECTIVE_WIN32=1
 CC_OTHER=-Wno-deprecated-objc-pointer-introspection -Wno-deprecated-objc-isa-usage -Wno-inline-new-delete -Wno-cast-of-sel-type -Wno-objc-root-class -Wno-duplicate-decl-specifier
 
 CC = /usr/bin/clang
@@ -35,10 +35,11 @@ LD_OPTS=
 PRODUCT=test.exe
 OBJS= \
 	$(BUILD_OBJ_DIR)/test.o \
-	$(BUILD_OBJ_DIR)/objc-msg-win32.o \
-	$(BUILD_OBJ_DIR)/objc-errors.o \
-	$(BUILD_OBJ_DIR)/objc-class.o \
-	$(BUILD_OBJ_DIR)/objc-runtime-new.o \
+	# $(BUILD_OBJ_DIR)/objc-msg-win32.o \
+	# $(BUILD_OBJ_DIR)/objc-errors.o \
+	# $(BUILD_OBJ_DIR)/NSObject.o \
+	# $(BUILD_OBJ_DIR)/objc-class.o \
+	# $(BUILD_OBJ_DIR)/objc-runtime-new.o \
 
 
 all: $(BUILD_OBJ_DIR) $(PRODUCT)
@@ -50,7 +51,7 @@ $(PRODUCT): $(OBJS)
 	$(LD) $(LD_OPTS) $^ -o $@
 
 $(BUILD_OBJ_DIR)/test.o: test.mm
-	$(CC) $(CXX_OPTS) -fobjc-arc -c $< -o $@
+	$(CC) $(CXX_OPTS) -c $< -o $@
 
 $(BUILD_OBJ_DIR)/objc-msg-win32.o: runtime/Messengers.subproj/objc-msg-win32.mm
 	$(CC) $(CXX_OPTS) -c $< -o $@

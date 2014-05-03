@@ -21,18 +21,21 @@
  * @APPLE_LICENSE_HEADER_END@
  */
 
-#if !__OBJC2__
+
+#include "objc-private.h"
+#include "objc-exception.h"
+
+
+#if !__OBJC2__  ||  SUBJECTIVE
 
 /***********************************************************************
 * 32-bit implementation
 **********************************************************************/
 
-#include "objc-private.h"
 #include <stdlib.h>
 #include <setjmp.h>
 #include <execinfo.h>
 
-#include "objc-exception.h"
 
 static objc_exception_functions_t xtab;
 

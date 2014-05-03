@@ -27,7 +27,7 @@
 #include <objc/objc.h>
 #include <stdint.h>
 
-#if !__OBJC2__
+#if !__OBJC2__  ||  SUBJECTIVE
 
 // compiler reserves a setjmp buffer + 4 words as localExceptionData
 

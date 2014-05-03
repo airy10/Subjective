@@ -1,17 +1,18 @@
 
+#include "objc-config.h"
+
 #if TARGET_OS_WIN32
 
 #define WIN32_LEAN_AND_MEAN
+
 #include <stdio.h>
 #include <windows.h>
 #include <stdlib.h>
+
 #include "objc-win32.h"
 
 
-WINBOOL APIENTRY DllMain( HMODULE hModule,
-                       DWORD  ul_reason_for_call,
-                       LPVOID lpReserved
-					 )
+WINBOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
 {
     switch (ul_reason_for_call) {
     case DLL_PROCESS_ATTACH:

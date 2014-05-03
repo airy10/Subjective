@@ -184,6 +184,8 @@ void _objc_setBadAllocHandler(id(*newHandler)(Class))
 }
 
 
+#define ARR_LOGGING 0
+
 #if ARR_LOGGING
 struct {
     int retains;
@@ -1298,7 +1300,7 @@ static bool callerAcceptsFastAutorelease(const void *ra)
 // __i386__  &&  TARGET_IPHONE_SIMULATOR
 # else
 
-#warning unknown architecture
+// #warning unknown architecture
 
 static bool callerAcceptsFastAutorelease(const void *ra)
 {
