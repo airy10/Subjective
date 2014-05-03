@@ -29,8 +29,6 @@
 
 int main()
 {
-	_objc_init();
-
 	printf("EHLO\n");
 
 	Class cls = objc_getClass("NSObject");

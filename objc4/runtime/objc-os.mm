@@ -757,6 +757,19 @@ void _objc_init(void)
 }
 
 
+#if SUBJECTIVE
+
+static struct _objc_initializer_
+{
+	_objc_initializer_()
+	{
+		_objc_init();
+	}
+} _objc_initializer_var;
+
+#endif
+
+
 /***********************************************************************
 * _headerForAddress.
 * addr can be a class or a category
