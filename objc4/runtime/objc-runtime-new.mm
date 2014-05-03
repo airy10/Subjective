@@ -78,10 +78,12 @@ rwlock_t runtimeLock;
 rwlock_t selLock;
 mutex_t cacheUpdateLock = MUTEX_INITIALIZER;
 recursive_mutex_t loadMethodLock = RECURSIVE_MUTEX_INITIALIZER;
+#if SUPPORT_DEBUGGER_MODE
 static int debugger_runtimeLock;
 static int debugger_selLock;
 static int debugger_cacheUpdateLock;
 static int debugger_loadMethodLock;
+#endif
 #define RDONLY 1
 #define RDWR 2
 

@@ -1,14 +1,20 @@
+
 #include <stdio.h>
 
-#include "Foundation/NSObject.h"
+#include <malloc/malloc.h>
+#include "objc-private.h"
+#include "objc-os.h"
+#include "objc-runtime-new.h"
+#include "objc/runtime.h"
 
+// #include "Foundation/NSObject.h"
 
+/*
 @interface MyObject : NSObject
 @end
 
 
 @implementation MyObject
-
 + (void)load
 {
 	printf("MyObject: load\n");
@@ -18,15 +24,22 @@
 {
 	printf("MyObject: dealloc\n");
 }
-
 @end
-
+*/
 
 int main()
 {
 	printf("EHLO\n");
-	NSObject* o = [[MyObject alloc] init];
-	o = nil;
+	Class cls = objc_getClass("NSObject");
+	id obj = class_createInstance((id)cls, 0);
+	printf("class=%p object=%p\n", cls, obj);
+
+	assert(object_getClass(obj) == (Class)cls);
+	assert(strcmp(object_getClassName(obj), "NSObject") == 0);
+
+	Method mth = class_getInstanceMethod(cls, (SEL)"alloc");
+	printf("method alloc=%p\n", mth);
+
 	printf("GDBY\n");
 	return 0;
 }

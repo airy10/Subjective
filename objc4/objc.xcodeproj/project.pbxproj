@@ -8,25 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3622D19F19118443003AC4F8 /* test.mm in Sources */ = {isa = PBXBuildFile; fileRef = 3622D19D1911842A003AC4F8 /* test.mm */; };
-		3622D1A019118559003AC4F8 /* libobjc.A.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC0630554660B00DB518D /* libobjc.A.dylib */; };
+		3622D1A019118559003AC4F8 /* libobjc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D2AAC0630554660B00DB518D /* libobjc.a */; };
 		36EC541F1913FA9500D90C51 /* objc-os.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36EC541E1913FA9500D90C51 /* objc-os.mm */; };
-		36EC542C1914451600D90C51 /* objc-msg-i386.s in Sources */ = {isa = PBXBuildFile; fileRef = 830F2A6A0D737FB800392440 /* objc-msg-i386.s */; };
-		36EC542D19144AE400D90C51 /* objc-cache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485CB0D6D68A200CEA253 /* objc-cache.mm */; };
-		36EC542E19145C9A00D90C51 /* objc-exception.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485D20D6D68A200CEA253 /* objc-exception.mm */; };
-		36EC542F19145FB300D90C51 /* objc-probes.d in Sources */ = {isa = PBXBuildFile; fileRef = 87BB4E900EC39633005D08E1 /* objc-probes.d */; };
-		36EC54301914696100D90C51 /* objc-loadmethod.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485DA0D6D68A200CEA253 /* objc-loadmethod.mm */; };
-		36EC543119146B5000D90C51 /* maptable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485BC0D6D687300CEA253 /* maptable.mm */; };
-		36EC543219146B7200D90C51 /* hashtable2.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485B80D6D687300CEA253 /* hashtable2.mm */; settings = {COMPILER_FLAGS = "-Wno-unused-variable"; }; };
-		36EC5433191470C400D90C51 /* objc-file.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485D30D6D68A200CEA253 /* objc-file.mm */; };
-		36EC543419147FF400D90C51 /* NSObject.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9672F7ED14D5F488007CEC96 /* NSObject.mm */; };
-		36EC54351914861200D90C51 /* Protocol.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838486190D6D68A800CEA253 /* Protocol.mm */; };
-		36EC54361914877200D90C51 /* objc-weak.mm in Sources */ = {isa = PBXBuildFile; fileRef = 39ABD72012F0B61800D1054C /* objc-weak.mm */; settings = {COMPILER_FLAGS = "-Wno-undeclared-selector"; }; };
-		36EC5437191489B000D90C51 /* objc-layout.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485D60D6D68A200CEA253 /* objc-layout.mm */; };
-		36EC543819148B2100D90C51 /* objc-references.mm in Sources */ = {isa = PBXBuildFile; fileRef = 393CEABF0DC69E3E000B69DE /* objc-references.mm */; };
-		36EC543919148D4200D90C51 /* objc-initialize.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485D50D6D68A200CEA253 /* objc-initialize.mm */; };
-		36EC543A19148FA900D90C51 /* objc-sel.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485E80D6D68A200CEA253 /* objc-sel.mm */; };
-		36EC543B19148FBD00D90C51 /* objc-sel-set.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485E60D6D68A200CEA253 /* objc-sel-set.mm */; };
-		36EC543E1914973500D90C51 /* test-experiment.mm in Sources */ = {isa = PBXBuildFile; fileRef = 36EC543C1914971600D90C51 /* test-experiment.mm */; };
 		36EC543F191497EA00D90C51 /* Object.m in Sources */ = {isa = PBXBuildFile; fileRef = 838485EE0D6D68A200CEA253 /* Object.m */; };
 		393CEAC00DC69E3E000B69DE /* objc-references.mm in Sources */ = {isa = PBXBuildFile; fileRef = 393CEABF0DC69E3E000B69DE /* objc-references.mm */; };
 		399BC72E1224831B007FBDF0 /* objc-externalref.mm in Sources */ = {isa = PBXBuildFile; fileRef = 399BC72D1224831B007FBDF0 /* objc-externalref.mm */; };
@@ -38,7 +21,7 @@
 		83725F4A14CA5BFA0014370E /* objc-opt.mm in Sources */ = {isa = PBXBuildFile; fileRef = 83725F4914CA5BFA0014370E /* objc-opt.mm */; };
 		8383A3A3122600E9009290B8 /* a1a2-blocktramps-arm.s in Sources */ = {isa = PBXBuildFile; fileRef = 8383A3A1122600E9009290B8 /* a1a2-blocktramps-arm.s */; };
 		8383A3A4122600E9009290B8 /* a2a3-blocktramps-arm.s in Sources */ = {isa = PBXBuildFile; fileRef = 8383A3A2122600E9009290B8 /* a2a3-blocktramps-arm.s */; };
-		838485C00D6D687300CEA253 /* hashtable2.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485B80D6D687300CEA253 /* hashtable2.mm */; };
+		838485C00D6D687300CEA253 /* hashtable2.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485B80D6D687300CEA253 /* hashtable2.mm */; settings = {COMPILER_FLAGS = "-Wno-unused-variable"; }; };
 		838485C40D6D687300CEA253 /* maptable.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485BC0D6D687300CEA253 /* maptable.mm */; };
 		838485F20D6D68A200CEA253 /* objc-cache.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485CB0D6D68A200CEA253 /* objc-cache.mm */; };
 		838485F50D6D68A200CEA253 /* objc-class.mm in Sources */ = {isa = PBXBuildFile; fileRef = 838485CE0D6D68A200CEA253 /* objc-class.mm */; };
@@ -87,15 +70,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
-		36EC542719143B1F00D90C51 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
-		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -108,8 +82,6 @@
 		36EC541B1913FA5100D90C51 /* markgc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = markgc.c; sourceTree = "<group>"; };
 		36EC541C1913FA5100D90C51 /* unexported_symbols */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = unexported_symbols; sourceTree = "<group>"; };
 		36EC541E1913FA9500D90C51 /* objc-os.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-os.mm"; path = "runtime/objc-os.mm"; sourceTree = "<group>"; };
-		36EC542B19143B1F00D90C51 /* objc-experiment */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "objc-experiment"; sourceTree = BUILT_PRODUCTS_DIR; };
-		36EC543C1914971600D90C51 /* test-experiment.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = "test-experiment.mm"; sourceTree = "<group>"; };
 		393CEABF0DC69E3E000B69DE /* objc-references.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-references.mm"; path = "runtime/objc-references.mm"; sourceTree = "<group>"; };
 		393CEAC50DC69E67000B69DE /* objc-references.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "objc-references.h"; path = "runtime/objc-references.h"; sourceTree = "<group>"; };
 		399BC72D1224831B007FBDF0 /* objc-externalref.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-externalref.mm"; path = "runtime/objc-externalref.mm"; sourceTree = "<group>"; };
@@ -176,7 +148,7 @@
 		83EB007A121C9EC200B92C16 /* objc-sel-table.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = "objc-sel-table.s"; path = "runtime/objc-sel-table.s"; sourceTree = "<group>"; };
 		87BB4E900EC39633005D08E1 /* objc-probes.d */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.dtrace; name = "objc-probes.d"; path = "runtime/objc-probes.d"; sourceTree = "<group>"; };
 		9672F7ED14D5F488007CEC96 /* NSObject.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = NSObject.mm; path = runtime/NSObject.mm; sourceTree = "<group>"; };
-		D2AAC0630554660B00DB518D /* libobjc.A.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libobjc.A.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2AAC0630554660B00DB518D /* libobjc.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libobjc.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8923D9C116AB2820071B552 /* a1a2-blocktramps-i386.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = "a1a2-blocktramps-i386.s"; path = "runtime/a1a2-blocktramps-i386.s"; sourceTree = "<group>"; };
 		E8923D9D116AB2820071B552 /* a1a2-blocktramps-x86_64.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = "a1a2-blocktramps-x86_64.s"; path = "runtime/a1a2-blocktramps-x86_64.s"; sourceTree = "<group>"; };
 		E8923D9E116AB2820071B552 /* a2a3-blocktramps-i386.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = "a2a3-blocktramps-i386.s"; path = "runtime/a2a3-blocktramps-i386.s"; sourceTree = "<group>"; };
@@ -189,14 +161,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3622D1A019118559003AC4F8 /* libobjc.A.dylib in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		36EC542519143B1F00D90C51 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				3622D1A019118559003AC4F8 /* libobjc.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,9 +241,8 @@
 		1AB674ADFE9D54B511CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D2AAC0630554660B00DB518D /* libobjc.A.dylib */,
+				D2AAC0630554660B00DB518D /* libobjc.a */,
 				3622D19419117D9A003AC4F8 /* objc-test */,
-				36EC542B19143B1F00D90C51 /* objc-experiment */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -286,7 +250,6 @@
 		36EC54191913FA4100D90C51 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				36EC543C1914971600D90C51 /* test-experiment.mm */,
 				36EC541A1913FA5100D90C51 /* libobjc.order */,
 				36EC541B1913FA5100D90C51 /* markgc.c */,
 				36EC541C1913FA5100D90C51 /* unexported_symbols */,
@@ -395,23 +358,6 @@
 			productReference = 3622D19419117D9A003AC4F8 /* objc-test */;
 			productType = "com.apple.product-type.tool";
 		};
-		36EC542019143B1F00D90C51 /* objc-experiment */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 36EC542819143B1F00D90C51 /* Build configuration list for PBXNativeTarget "objc-experiment" */;
-			buildPhases = (
-				36EC542319143B1F00D90C51 /* Sources */,
-				36EC542519143B1F00D90C51 /* Frameworks */,
-				36EC542719143B1F00D90C51 /* CopyFiles */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "objc-experiment";
-			productName = "objc-test";
-			productReference = 36EC542B19143B1F00D90C51 /* objc-experiment */;
-			productType = "com.apple.product-type.tool";
-		};
 		D2AAC0620554660B00DB518D /* objc */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1DEB914A08733D8E0010E9CD /* Build configuration list for PBXNativeTarget "objc" */;
@@ -425,7 +371,7 @@
 			);
 			name = objc;
 			productName = objc;
-			productReference = D2AAC0630554660B00DB518D /* libobjc.A.dylib */;
+			productReference = D2AAC0630554660B00DB518D /* libobjc.a */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -453,7 +399,6 @@
 			targets = (
 				D2AAC0620554660B00DB518D /* objc */,
 				3622D19319117D9A003AC4F8 /* objc-test */,
-				36EC542019143B1F00D90C51 /* objc-experiment */,
 			);
 		};
 /* End PBXProject section */
@@ -464,30 +409,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3622D19F19118443003AC4F8 /* test.mm in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		36EC542319143B1F00D90C51 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				36EC543E1914973500D90C51 /* test-experiment.mm in Sources */,
-				36EC543B19148FBD00D90C51 /* objc-sel-set.mm in Sources */,
-				36EC543A19148FA900D90C51 /* objc-sel.mm in Sources */,
-				36EC543919148D4200D90C51 /* objc-initialize.mm in Sources */,
-				36EC543819148B2100D90C51 /* objc-references.mm in Sources */,
-				36EC5437191489B000D90C51 /* objc-layout.mm in Sources */,
-				36EC54361914877200D90C51 /* objc-weak.mm in Sources */,
-				36EC54351914861200D90C51 /* Protocol.mm in Sources */,
-				36EC543419147FF400D90C51 /* NSObject.mm in Sources */,
-				36EC5433191470C400D90C51 /* objc-file.mm in Sources */,
-				36EC543219146B7200D90C51 /* hashtable2.mm in Sources */,
-				36EC543119146B5000D90C51 /* maptable.mm in Sources */,
-				36EC54301914696100D90C51 /* objc-loadmethod.mm in Sources */,
-				36EC542F19145FB300D90C51 /* objc-probes.d in Sources */,
-				36EC542E19145C9A00D90C51 /* objc-exception.mm in Sources */,
-				36EC542D19144AE400D90C51 /* objc-cache.mm in Sources */,
-				36EC542C1914451600D90C51 /* objc-msg-i386.s in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -556,34 +477,35 @@
 				CLANG_MODULES_AUTOLINK = NO;
 				COPY_PHASE_STRIP = NO;
 				DYLIB_CURRENT_VERSION = 228;
-				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
 				FRAMEWORK_VERSION = A;
 				GCC_CW_ASM_SYNTAX = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_LINK_WITH_DYNAMIC_LIBRARIES = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"OS_OBJECT_USE_OBJC=0",
+					"SUBJECTIVE=1",
+					"__OBJC2__=1",
+				);
 				GCC_THREADSAFE_STATICS = NO;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = ../include;
 				INSTALL_PATH = /usr/lib;
+				LD_NO_PIE = NO;
 				LINK_WITH_STANDARD_LIBRARIES = NO;
-				MACH_O_TYPE = mh_dylib;
+				MACH_O_TYPE = staticlib;
 				ORDER_FILE = libobjc.order;
 				OTHER_CFLAGS = (
 					"-fno-blocks",
 					"-fdollars-in-identifiers",
-					"$(OTHER_CFLAGS)",
+					"-fobjc-runtime=macosx",
+					"$(inherited)",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-nostdlib",
-					"-Wl,-no_compact_unwind",
-					"-lc",
-					"-lc++",
-				);
+				OTHER_LDFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/objc;
-				PRODUCT_NAME = objc.A;
+				PRODUCT_NAME = objc;
 				PUBLIC_HEADERS_FOLDER_PATH = /usr/include/objc;
 				SDKROOT = macosx10.8;
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols;
@@ -605,32 +527,35 @@
 				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_MODULES_AUTOLINK = NO;
 				DYLIB_CURRENT_VERSION = 228;
-				EXECUTABLE_EXTENSION = dylib;
+				EXECUTABLE_EXTENSION = a;
 				EXECUTABLE_PREFIX = lib;
 				FRAMEWORK_VERSION = A;
 				GCC_CW_ASM_SYNTAX = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_LINK_WITH_DYNAMIC_LIBRARIES = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"OS_OBJECT_USE_OBJC=0",
+					"NDEBUG=1",
+					"SUBJECTIVE=1",
+					"__OBJC2__=1",
+				);
 				GCC_THREADSAFE_STATICS = NO;
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = ../include;
 				INSTALL_PATH = /usr/lib;
+				LD_NO_PIE = NO;
 				LINK_WITH_STANDARD_LIBRARIES = NO;
-				MACH_O_TYPE = mh_dylib;
+				MACH_O_TYPE = staticlib;
 				ORDER_FILE = libobjc.order;
 				OTHER_CFLAGS = (
 					"-fno-blocks",
 					"-fdollars-in-identifiers",
-					"$(OTHER_CFLAGS)",
+					"-fobjc-runtime=macosx",
+					"$(inherited)",
 				);
-				OTHER_LDFLAGS = (
-					"-all_load",
-					"-nostdlib",
-					"-Wl,-no_compact_unwind",
-					"-lc",
-					"-lc++",
-				);
+				OTHER_LDFLAGS = "";
 				PRIVATE_HEADERS_FOLDER_PATH = /usr/local/include/objc;
-				PRODUCT_NAME = objc.A;
+				PRODUCT_NAME = objc;
 				PUBLIC_HEADERS_FOLDER_PATH = /usr/include/objc;
 				SDKROOT = macosx10.8;
 				UNEXPORTED_SYMBOLS_FILE = unexported_symbols;
@@ -649,29 +574,35 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CLANG_MODULES_AUTOLINK = NO;
+				CLANG_MODULES_AUTOLINK = YES;
 				CLANG_OBJC_RUNTIME = NO;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_ENABLE_CPP_EXCEPTIONS = NO;
-				GCC_ENABLE_CPP_RTTI = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"OS_OBJECT_USE_OBJC=0",
 					"SUBJECTIVE=1",
 				);
 				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_UNUSED_VARIABLE = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../include,
+					include,
+				);
 				LINK_WITH_STANDARD_LIBRARIES = NO;
+				OTHER_CFLAGS = "-fpic";
 				OTHER_LDFLAGS = "";
 				SDKROOT = macosx10.8;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
@@ -684,31 +615,35 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_CXX_LIBRARY = "compiler-default";
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CLANG_MODULES_AUTOLINK = NO;
+				CLANG_MODULES_AUTOLINK = YES;
 				CLANG_OBJC_RUNTIME = NO;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_ENABLE_CPP_EXCEPTIONS = NO;
-				GCC_ENABLE_CPP_RTTI = NO;
-				GCC_INLINES_ARE_PRIVATE_EXTERN = YES;
+				GCC_ENABLE_CPP_EXCEPTIONS = YES;
+				GCC_ENABLE_CPP_RTTI = YES;
+				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"OS_OBJECT_USE_OBJC=0",
 					"NDEBUG=1",
 					"SUBJECTIVE=1",
 				);
 				GCC_STRICT_ALIASING = YES;
-				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
-				GCC_WARN_ABOUT_MISSING_NEWLINE = YES;
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = "";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_MISSING_NEWLINE = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_SHADOW = YES;
-				GCC_WARN_UNUSED_VARIABLE = NO;
+				GCC_WARN_SHADOW = NO;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				HEADER_SEARCH_PATHS = (
+					../include,
+					include,
+				);
 				LINK_WITH_STANDARD_LIBRARIES = NO;
-				"OTHER_CFLAGS[arch=i386]" = "-momit-leaf-frame-pointer";
-				"OTHER_CFLAGS[arch=x86_64]" = "-momit-leaf-frame-pointer";
+				OTHER_CFLAGS = "-fpic";
 				OTHER_LDFLAGS = "";
 				SDKROOT = macosx10.8;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
@@ -722,24 +657,24 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_ENABLE_MODULES = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CLANG_MODULES_AUTOLINK = NO;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_MODULES_AUTOLINK = YES;
+				CLANG_WARN_BOOL_CONVERSION = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = NO;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = NO;
+				CLANG_WARN_EMPTY_BODY = NO;
+				CLANG_WARN_ENUM_CONVERSION = NO;
+				CLANG_WARN_INT_CONVERSION = NO;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_LINK_WITH_DYNAMIC_LIBRARIES = NO;
+				GCC_LINK_WITH_DYNAMIC_LIBRARIES = YES;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -752,20 +687,32 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_MASTER_OBJECT_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					runtime,
+				);
 				LD_DEPENDENCY_INFO_FILE = "";
+				LD_NO_PIE = NO;
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				OTHER_CFLAGS = (
+					"-fobjc-runtime=macosx",
+					"-fno-blocks",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"-lc++",
 					"-lSystem",
-					"-Wl,-no_compact_unwind",
+					"-lstdc++",
+					"$(inherited)",
 				);
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.8;
 				VALID_ARCHS = "x86_64 i386";
+				WARNING_CFLAGS = "-Wno-inline-new-delete";
 			};
 			name = Debug;
 		};
@@ -774,25 +721,26 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LANGUAGE_STANDARD = "compiler-default";
 				CLANG_ENABLE_MODULES = NO;
-				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_ARC = NO;
 				CLANG_LINK_OBJC_RUNTIME = NO;
-				CLANG_MODULES_AUTOLINK = NO;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_MODULES_AUTOLINK = YES;
+				CLANG_WARN_BOOL_CONVERSION = NO;
+				CLANG_WARN_CONSTANT_CONVERSION = NO;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = NO;
+				CLANG_WARN_EMPTY_BODY = NO;
+				CLANG_WARN_ENUM_CONVERSION = NO;
+				CLANG_WARN_INT_CONVERSION = NO;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_C_LANGUAGE_STANDARD = "compiler-default";
+				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_LINK_WITH_DYNAMIC_LIBRARIES = NO;
+				GCC_LINK_WITH_DYNAMIC_LIBRARIES = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -800,154 +748,31 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				GENERATE_MASTER_OBJECT_FILE = NO;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					runtime,
+				);
 				LD_DEPENDENCY_INFO_FILE = "";
+				LD_NO_PIE = NO;
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				MACH_O_TYPE = mh_execute;
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				OTHER_CFLAGS = (
+					"-fobjc-runtime=macosx",
+					"-fno-blocks",
+					"$(inherited)",
+				);
 				OTHER_LDFLAGS = (
 					"-lc++",
 					"-lSystem",
-					"-Wl,-no_compact_unwind",
+					"-lstdc++",
+					"$(inherited)",
 				);
 				PRELINK_LIBS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx10.8;
 				VALID_ARCHS = "x86_64 i386";
-			};
-			name = Release;
-		};
-		36EC542919143B1F00D90C51 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = NO;
-				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_LINK_OBJC_RUNTIME = NO;
-				CLANG_MODULES_AUTOLINK = NO;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_LINK_WITH_DYNAMIC_LIBRARIES = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-					"__OBJC2__=1",
-				);
-				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				GENERATE_MASTER_OBJECT_FILE = NO;
-				HEADER_SEARCH_PATHS = ../include;
-				LD_DEPENDENCY_INFO_FILE = "";
-				LD_NO_PIE = NO;
-				LINK_WITH_STANDARD_LIBRARIES = NO;
-				MACH_O_TYPE = mh_execute;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CFLAGS = (
-					"-fno-blocks",
-					"-fobjc-runtime=macosx",
-				);
-				OTHER_LDFLAGS = (
-					"-lc++",
-					"-lSystem",
-				);
-				PRELINK_LIBS = "";
-				PRODUCT_NAME = "objc-experiment";
-				SDKROOT = macosx10.8;
-				VALID_ARCHS = "x86_64 i386";
-				WARNING_CFLAGS = (
-					"-Wno-deprecated-objc-pointer-introspection",
-					"-Wno-deprecated-objc-isa-usage",
-					"-Wno-inline-new-delete",
-					"-Wno-cast-of-sel-type",
-					"-Wno-objc-root-class",
-					"-Wno-duplicate-decl-specifier",
-				);
-			};
-			name = Debug;
-		};
-		36EC542A19143B1F00D90C51 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_ENABLE_MODULES = NO;
-				CLANG_ENABLE_OBJC_ARC = NO;
-				CLANG_LINK_OBJC_RUNTIME = NO;
-				CLANG_MODULES_AUTOLINK = NO;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CONFIGURATION_BUILD_DIR = "$(BUILD_DIR)/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)";
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
-				GCC_LINK_WITH_DYNAMIC_LIBRARIES = NO;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"OS_OBJECT_USE_OBJC=0",
-					"NDEBUG=1",
-					"SUBJECTIVE=1",
-					"__OBJC2__=1",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				GENERATE_MASTER_OBJECT_FILE = NO;
-				HEADER_SEARCH_PATHS = ../include;
-				LD_DEPENDENCY_INFO_FILE = "";
-				LD_NO_PIE = NO;
-				LINK_WITH_STANDARD_LIBRARIES = NO;
-				MACH_O_TYPE = mh_execute;
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
-				OTHER_CFLAGS = (
-					"-fno-blocks",
-					"-fobjc-runtime=macosx",
-				);
-				"OTHER_CFLAGS[arch=i386]" = "-momit-leaf-frame-pointer";
-				"OTHER_CFLAGS[arch=x86_64]" = "-momit-leaf-frame-pointer";
-				OTHER_LDFLAGS = (
-					"-lc++",
-					"-lSystem",
-				);
-				PRELINK_LIBS = "";
-				PRODUCT_NAME = "objc-experiment";
-				SDKROOT = macosx10.8;
-				VALID_ARCHS = "x86_64 i386";
-				WARNING_CFLAGS = (
-					"-Wno-deprecated-objc-pointer-introspection",
-					"-Wno-deprecated-objc-isa-usage",
-					"-Wno-inline-new-delete",
-					"-Wno-cast-of-sel-type",
-					"-Wno-objc-root-class",
-					"-Wno-duplicate-decl-specifier",
-				);
+				WARNING_CFLAGS = "-Wno-inline-new-delete";
 			};
 			name = Release;
 		};
@@ -977,15 +802,6 @@
 			buildConfigurations = (
 				3622D19B19117D9A003AC4F8 /* Debug */,
 				3622D19C19117D9A003AC4F8 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		36EC542819143B1F00D90C51 /* Build configuration list for PBXNativeTarget "objc-experiment" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				36EC542919143B1F00D90C51 /* Debug */,
-				36EC542A19143B1F00D90C51 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

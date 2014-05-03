@@ -92,7 +92,10 @@ __OSX_AVAILABLE_STARTING(__MAC_10_0, __IPHONE_NA)
 #include "Object.h"
 #include "Protocol.h"
 #include "objc-runtime.h"
-#include "objc-auto.h"
+
+#if SUPPORT_GC
+#   include "objc-auto.h"
+#endif
 
 // hack
 extern void _objc_error(id, const char *, va_list);

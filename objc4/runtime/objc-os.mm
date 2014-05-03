@@ -522,7 +522,9 @@ map_images_nolock(enum dyld_image_states state, uint32_t infoCount,
 {
     static BOOL firstTime = YES;
     static BOOL wantsGC = NO;
+#if SUPPORT_GC
     static BOOL wantsCompaction = NO;
+#endif
     uint32_t i;
     header_info *hi;
     header_info *hList[infoCount];
