@@ -42,6 +42,8 @@ OBJC_EXPORT BOOL objc_collectingEnabled(void) { return 0; }
 
 #if TARGET_OS_WIN32
 
+@error this is all wrong, fix me!
+
 #include "objc-runtime-old.h"
 #include "objcrt.h"
 

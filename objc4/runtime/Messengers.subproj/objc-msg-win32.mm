@@ -21,9 +21,9 @@
 #define super_receiver 0
 #define super_class 4
 
-// struct objc_class fields
+// struct class_t fields
 #define isa 0
-#define cache 32
+#define cache 8
 
 // struct objc_method fields
 #define method_name 0

@@ -118,7 +118,7 @@ _objc_exitPoints:
 
 // Selected field offsets in class structure
 	isa             = 0
-	cache           = 32
+	cache           = 8
 
 // Method descriptor
 	method_name     = 0
@@ -327,7 +327,7 @@ CACHE_GET     = 2	// first argument is class, search that class
 // search the receiver's cache
 // ecx = selector
 // edi = cache
-// esi = mask
+// esi = maskma
 // edx = index
 // eax = method (soon)
 LMsgSendProbeCache_$0_$1_$2:

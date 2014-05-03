@@ -29,16 +29,17 @@
 
 int main()
 {
+	_objc_init();
+
 	printf("EHLO\n");
+
 	Class cls = objc_getClass("NSObject");
 	id obj = class_createInstance((id)cls, 0);
 	printf("class=%p object=%p\n", cls, obj);
-
 	assert(object_getClass(obj) == (Class)cls);
 	assert(strcmp(object_getClassName(obj), "NSObject") == 0);
-
-	Method mth = class_getInstanceMethod(cls, (SEL)"alloc");
-	printf("method alloc=%p\n", mth);
+	Method meth = class_getClassMethod(cls, @selector(class));
+	printf("method class=%p\n", meth);
 
 	printf("GDBY\n");
 	return 0;
