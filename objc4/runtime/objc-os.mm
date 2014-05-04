@@ -759,6 +759,9 @@ void _objc_init(void)
 
 #if SUBJECTIVE
 
+// On OSX _objc_init() is called automatically but only if the library is called
+// libobjc. In any other case it should be called somehow else, e.g. like below.
+// There is no harm from calling it multiple times.
 static struct _objc_initializer_
 {
 	_objc_initializer_()

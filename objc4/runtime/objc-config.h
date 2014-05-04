@@ -26,10 +26,19 @@
 
 #include <TargetConditionals.h>
 
-// H.M.:
+
 #ifndef SUBJECTIVE
 #   define SUBJECTIVE 0
 #endif
+
+#if SUBJECTIVE && !defined(SUBJECTIVE_WIN32)
+#   if _WIN32
+#       define SUBJECTIVE_WIN32 1
+#   else
+#       define SUBJECTIVE_WIN32 0
+#   endif
+#endif
+
 
 // Define SUPPORT_GC=1 to enable garbage collection.
 // Be sure to edit OBJC_NO_GC in objc-auto.h as well.

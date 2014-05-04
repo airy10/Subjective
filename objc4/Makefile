@@ -12,7 +12,8 @@ INCLUDE= -Iinclude -I../include -I../include/objc \
 	-isystem /usr/local/$(MINGW)/include/c++/4.9.0/ \
 	-isystem /usr/local/$(MINGW)/include/c++/4.9.0/$(MINGW)
 
-DEFINES=-DSUBJECTIVE=1 -D_X86_ -DBUILDING_OBJC -DOBJC_EXPORTS -D__WIN32__ -DSUBJECTIVE_WIN32=1
+DEFINES=-D__OBJC2__=1 -DSUBJECTIVE=1 -DSUBJECTIVE_WIN32=1 -DBUILDING_OBJC \
+	-DTARGET_OS_WIN32=1 -DTARGET_CPU_X86=1
 CC_OTHER=-Wno-deprecated-objc-pointer-introspection -Wno-deprecated-objc-isa-usage -Wno-inline-new-delete -Wno-cast-of-sel-type -Wno-objc-root-class -Wno-duplicate-decl-specifier
 
 CC = /usr/bin/clang
@@ -51,7 +52,7 @@ $(PRODUCT): $(OBJS)
 	$(LD) $(LD_OPTS) $^ -o $@
 
 $(BUILD_OBJ_DIR)/test.o: test.mm
-	$(CC) $(CXX_OPTS) -c $< -o $@
+	$(CC) $(CXX_OPTS) -UBUILDING_OBJC -c $< -o $@
 
 $(BUILD_OBJ_DIR)/objc-msg-win32.o: runtime/Messengers.subproj/objc-msg-win32.mm
 	$(CC) $(CXX_OPTS) -c $< -o $@

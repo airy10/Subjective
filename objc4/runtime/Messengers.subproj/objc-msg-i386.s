@@ -25,8 +25,7 @@
 #if defined(__i386__)  &&  !TARGET_IPHONE_SIMULATOR
 
 /* H.M. */
-
-#if TARGET_OS_WIN32  &&  SUBJECTIVE
+#if SUBJECTIVE_WIN32
 #   define private_extern extern
 #   define cstring text
 #endif
@@ -70,6 +69,7 @@ _objc_entryPoints:
 	.long	_objc_msgSend_stret
 	.long	_objc_msgSendSuper
 	.long	_objc_msgSendSuper_stret
+	.long	_objc_msgSendSuper2
 	.long	0
 
 .private_extern _objc_exitPoints
@@ -81,17 +81,19 @@ _objc_exitPoints:
 	.long	LMsgSendStretExit
 	.long	LMsgSendSuperExit
 	.long	LMsgSendSuperStretExit
+	.long	LMsgSendSuper2Exit
 	.long	0
 
 
 /********************************************************************
  *
- * Common offsets.
+ * Common function argument offsets.
  *
  ********************************************************************/
 
 	self            = 4
 	super           = 4
+	super2          = 4
 	selector        = 8
 	marg_size       = 12
 	marg_list       = 16
@@ -112,12 +114,14 @@ _objc_exitPoints:
  *
  ********************************************************************/
 
-// objc_super parameter to sendSuper
+// objc_super and obj_super2
 	receiver        = 0
 	class           = 4
+	current_class	= 4
 
 // Selected field offsets in class structure
 	isa             = 0
+	superclass		= 4
 	cache           = 8
 
 // Method descriptor
@@ -306,6 +310,7 @@ STRUCT_RETURN = 1
 MSG_SEND      = 0	// first argument is receiver, search the isa
 MSG_SENDSUPER = 1	// first argument is objc_super, search the class
 CACHE_GET     = 2	// first argument is class, search that class
+MSG_SENDSUPER2 = 3	// first argument is objc_super2, search class.superclass
 
 .macro	CacheLookup
 
@@ -327,7 +332,7 @@ CACHE_GET     = 2	// first argument is class, search that class
 // search the receiver's cache
 // ecx = selector
 // edi = cache
-// esi = maskma
+// esi = mask
 // edx = index
 // eax = method (soon)
 LMsgSendProbeCache_$0_$1_$2:
@@ -399,6 +404,15 @@ LMsgSendMissInstrumentDone_$0_$1_$2:
 	movl	class(%edi), %eax	//  get messaged class
 	popl	%esi			//  restore callers register
 	popl	%edi			//  restore callers register
+.elseif $1 == MSG_SENDSUPER2
+	// replace "super2" arg with "receiver"
+	movl	super2+8(%esp), %edi	//  get super2 structure
+	movl	receiver(%edi), %edx	//  get messaged object
+	movl	%edx, super2+8(%esp)	//  make it the first argument
+	movl	current_class(%edi), %eax
+	movl	superclass(%eax), %eax
+	popl	%esi			//  restore callers register
+	popl	%edi			//  restore callers register
 .else					// CACHE_GET
 	popl	%esi			//  restore callers register
 	popl	%edi			//  restore callers register
@@ -417,6 +431,8 @@ LMsgSendMissInstrumentDone_$0_$1_$2:
 	movl	class(%edi), %eax	//  get messaged class
 	popl	%esi			//  restore callers register
 	popl	%edi			//  restore callers register
+.elseif $1 == MSG_SENDSUPER2	// MSG_SENDSUPER2 (stret)
+	!! TODO
 .else					// CACHE_GET
 	!! This should not happen.
 .endif
@@ -477,14 +493,14 @@ LMsgSendHitInstrumentDone_$0_$1_$2:
 .endif
 
 .if $0 == WORD_RETURN			// Regular word return
-.if $1 == MSG_SENDSUPER			// MSG_SENDSUPER
+.if $1 == MSG_SENDSUPER || $1 == MSG_SENDSUPER2
 	// replace "super" arg with "self"
 	movl	super+8(%esp), %edi
 	movl	receiver(%edi), %esi
 	movl	%esi, super+8(%esp)
 .endif
 .else					// Struct return
-.if $1 == MSG_SENDSUPER			// MSG_SENDSUPER (stret)
+.if $1 == MSG_SENDSUPER || $1 == MSG_SENDSUPER2		// MSG_SENDSUPER(2) (stret)
 	// replace "super" arg with "self"
 	movl	super_stret+8(%esp), %edi
 	movl	receiver(%edi), %esi
@@ -657,7 +673,52 @@ LMsgSendDone:
 // 	jmp     LMsgSendReceiverOk
 
 LMsgSendExit:
-	END_ENTRY	_objc_msgSend
+	END_ENTRY
+
+
+/********************************************************************
+ *
+ * id objc_msgSendSuper2(struct objc_super2 *super2, SEL _cmd,...);
+ *
+ * struct objc_super2 {
+ *		id	receiver;
+ *		Class current_class; // ... whose super class should be used
+ * };
+ *
+ * (by H.M.)
+ *
+ ********************************************************************/
+
+	ENTRY	_objc_msgSendSuper2
+	CALL_MCOUNTER
+
+// load receiver and super2 info
+	movl	super2(%esp), %eax			// eax = super2
+	movl	current_class(%eax), %edx	// edx = super2->current_class
+	movl	superclass(%edx), %edx		// edx = super2->current_class->superclass
+	movl	receiver(%eax), %eax		// eax = super->receiver
+	movl    selector(%esp), %ecx		// ecx = selector
+
+#if SUPPORT_IGNORED_SELECTOR_CONSTANT
+	!! TODO
+#endif
+
+	CacheLookup WORD_RETURN, MSG_SENDSUPER2, LMsgSendSuper2CacheMiss
+	xor	%edx, %edx		// set nonstret for msgForward_internal
+	jmp	*%eax
+
+// cache miss: go search the method lists
+LMsgSendSuper2CacheMiss:
+	MethodTableLookup WORD_RETURN, MSG_SENDSUPER2
+	xor	%edx, %edx		// set nonstret for msgForward_internal
+	jmp	*%eax			// goto *imp
+
+LMsgSendSuper2Done:
+	ret
+LMsgSendSuper2Exit:
+	END_ENTRY
+
+
 
 /********************************************************************
  *

@@ -1261,7 +1261,7 @@ _class_createInstancesFromZone(Class cls, size_t extraBytes, void *zone,
     // CF requires all objects be at least 16 bytes.
     if (size < 16) size = 16;
 
-#if SUBJECTIVE
+#if SUBJECTIVE_WIN32
 	assert(zone == NULL);
 	size_t mem_size = (size + 3) & ~3uL;
 	char* p = (char*)calloc(mem_size, num_requested);
