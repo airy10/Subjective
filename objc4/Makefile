@@ -13,16 +13,19 @@ INCLUDE= -Iinclude -I../include -I../include/objc \
 	-isystem /usr/local/$(MINGW)/include/c++/4.9.0/$(MINGW)
 
 DEFINES=-D__OBJC2__=1 -DSUBJECTIVE=1 -DSUBJECTIVE_WIN32=1 -DBUILDING_OBJC \
-	-DTARGET_OS_WIN32=1 -DTARGET_CPU_X86=1
+	-DTARGET_OS_WIN32=1 -DTARGET_CPU_X86=1 -D_X86_
 CC_OTHER=-Wno-deprecated-objc-pointer-introspection -Wno-deprecated-objc-isa-usage -Wno-inline-new-delete -Wno-cast-of-sel-type -Wno-objc-root-class -Wno-duplicate-decl-specifier
 
 CC = /usr/bin/clang
 C_OPTS = $(TARGET) \
-	-nostdinc -fobjc-runtime=macosx \
+	-arch i386 -nostdinc -fobjc-runtime=macosx \
 	-Os \
 	$(DEFINES) $(INCLUDE) $(CC_OTHER)
 CC_OPTS = $(C_OPTS) -std=gnu99
 CXX_OPTS = $(C_OPTS) -std=c++03
+
+CXX_OPTS_TEST = $(CXX_OPTS) -UBUILDING_OBJC -fobjc-arc
+
 
 AS=/usr/local/bin/$(MINGW)-gcc -c
 AS=$(CC)
@@ -52,7 +55,7 @@ $(PRODUCT): $(OBJS)
 	$(LD) $(LD_OPTS) $^ -o $@
 
 $(BUILD_OBJ_DIR)/test.o: test.mm
-	$(CC) $(CXX_OPTS) -UBUILDING_OBJC -c $< -o $@
+	$(CC) $(CXX_OPTS_TEST) -c $< -o $@
 
 $(BUILD_OBJ_DIR)/objc-msg-win32.o: runtime/Messengers.subproj/objc-msg-win32.mm
 	$(CC) $(CXX_OPTS) -c $< -o $@

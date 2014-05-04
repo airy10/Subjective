@@ -4,22 +4,18 @@
 =====================================================
 
 
-----------------------------------------------------------------------
-
- ** This is a work in progress. Please be *impatient*, contribute! **
-
-----------------------------------------------------------------------
+**This is a work in progress. Please be *impatient*, contribute!**
+------------------------------------------------------------------
 
 
-*SUBJECTIVE* is an attempt to port one of the latest versions of the
-Objective C runtime, libobjc, to Windows. Specifically, this port is a fork
-of objc4-532.2 which is available at opensource.apple.com.
+*SUBJECTIVE* is an attempt to bring Objective C with ARC support to Windows.
 
-The port can be compiled using the latest llvm-clang either on OS X or on
-Windows. In the former case you will need the MinGW cross-compiler package for
-OS X. On both platforms clang is used for compiling the source, where as
-either the MinGW/GNU linker or the MS linker is used for linking the final
-binaries.
+This project is a fork of objc4-532.2, the Objective C runtime, available at
+opensource.apple.com. It can be compiled using the latest llvm-clang either
+on OS X or on Windows. In the former case you will need the MinGW
+cross-compiler package for OS X. On both platforms clang is used for compiling
+the source, whereas either the MinGW/GNU linker or the MS linker is used for
+linking the final binaries.
 
 
 Current limitations:

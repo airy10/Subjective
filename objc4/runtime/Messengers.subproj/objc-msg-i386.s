@@ -91,21 +91,27 @@ _objc_exitPoints:
  *
  ********************************************************************/
 
-	self            = 4
-	super           = 4
-	super2          = 4
-	selector        = 8
-	marg_size       = 12
-	marg_list       = 16
-	first_arg       = 12
+#if SUBJECTIVE_WIN32
+	os_args = 8
+#else
+	os_args = 4
+#endif
 
-	struct_addr     = 4
+	self            = os_args + 0
+	super           = os_args + 0
+	super2          = os_args + 0
+	selector        = os_args + 4
+	marg_size       = os_args + 8
+	marg_list       = os_args + 12
+	first_arg       = os_args + 8
 
-	self_stret      = 8
-	super_stret     = 8
-	selector_stret  = 12
-	marg_size_stret = 16
-	marg_list_stret = 20
+	struct_addr     = os_args + 0
+
+	self_stret      = os_args + 4
+	super_stret     = os_args + 4
+	selector_stret  = os_args + 8
+	marg_size_stret = os_args + 12
+	marg_list_stret = os_args + 16
 
 
 /********************************************************************
@@ -700,7 +706,8 @@ LMsgSendExit:
 	movl    selector(%esp), %ecx		// ecx = selector
 
 #if SUPPORT_IGNORED_SELECTOR_CONSTANT
-	!! TODO
+	cmpl    $ kIgnore, %ecx
+	je      LMsgSendSuper2Ignored	// return self from %eax
 #endif
 
 	CacheLookup WORD_RETURN, MSG_SENDSUPER2, LMsgSendSuper2CacheMiss
@@ -713,8 +720,12 @@ LMsgSendSuper2CacheMiss:
 	xor	%edx, %edx		// set nonstret for msgForward_internal
 	jmp	*%eax			// goto *imp
 
-LMsgSendSuper2Done:
+// ignored selector: (currently not reached)
+LMsgSendSuper2Ignored:
+	movl	super2(%esp), %eax
+	movl    receiver(%eax), %eax
 	ret
+
 LMsgSendSuper2Exit:
 	END_ENTRY
 
