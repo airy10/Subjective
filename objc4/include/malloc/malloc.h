@@ -1,22 +1,13 @@
 
-#ifndef _MALLOC_MALLOC_H_
-#define _MALLOC_MALLOC_H_
+#ifndef _SUBJ_MALLOC_MALLOC_H_
+#define _SUBJ_MALLOC_MALLOC_H_
 
-#include <Availability.h>
-#include <AvailabilityMacros.h>
-#include <TargetConditionals.h>
-
-
-#if TARGET_OS_WIN32
-
-// Compiler compatibility
-
-// OS compatibility
+#if defined(SUBJECTIVE_WIN32) && SUBJECTIVE_WIN32
 
 // static __inline void bcopy(const void *src, void *dst, size_t size) { memcpy(dst, src, size); }
 // static __inline void bzero(void *dst, size_t size) { memset(dst, 0, size); }
 
-int asprintf(char **dstp, const char *format, ...);
+// int asprintf(char **dstp, const char *format, ...);
 
 typedef void * malloc_zone_t;
 

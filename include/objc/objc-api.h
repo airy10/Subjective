@@ -117,6 +117,14 @@
 #   define OBJC_EXPORT  OBJC_EXTERN OBJC_VISIBLE
 #endif
 
+#if !defined (OBJC_EXPORT_INTF)
+#   if TARGET_OS_WIN32
+#       define OBJC_EXPORT_INTF
+#   else
+#       define OBJC_EXPORT_INTF OBJC_EXPORT
+#   endif
+#endif
+
 #if !defined(OBJC_IMPORT)
 #   define OBJC_IMPORT extern
 #endif

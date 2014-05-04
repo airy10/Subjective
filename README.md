@@ -1,12 +1,11 @@
 
+##*SUBJECTIVE*: Windows Port of the Objective-C Runtime
 
-*SUBJECTIVE*: Windows Port of the Objective-C Runtime
-=====================================================
-
+----------------------------------------------------------------------------
 
 **This is a work in progress. Please be *impatient*, contribute!**
-------------------------------------------------------------------
 
+----------------------------------------------------------------------------
 
 *SUBJECTIVE* is an attempt to bring Objective C with ARC support to Windows.
 

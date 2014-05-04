@@ -115,6 +115,8 @@
 		3622D19419117D9A003AC4F8 /* libobjc32-test */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "libobjc32-test"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3622D19D1911842A003AC4F8 /* test.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = test.mm; sourceTree = "<group>"; };
 		362901AF191344BE00974216 /* objc-msg-win32.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-msg-win32.mm"; path = "runtime/Messengers.subproj/objc-msg-win32.mm"; sourceTree = "<group>"; };
+		365A83BC1916D6E7005287F1 /* OSAtomic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSAtomic.h; path = include/libkern/OSAtomic.h; sourceTree = "<group>"; };
+		365A83BD1916DEC7005287F1 /* malloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = malloc.h; path = include/malloc/malloc.h; sourceTree = "<group>"; };
 		368E8E2F19158308002E763D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		368E8E5D1915C89A002E763D /* libobjc32.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libobjc32.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		36EC54161913E98000D90C51 /* objc-win32.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-win32.mm"; path = "runtime/objc-win32.mm"; sourceTree = "<group>"; };
@@ -310,6 +312,8 @@
 		838485B20D6D67F900CEA253 /* Win32 */ = {
 			isa = PBXGroup;
 			children = (
+				365A83BD1916DEC7005287F1 /* malloc.h */,
+				365A83BC1916D6E7005287F1 /* OSAtomic.h */,
 				36EC54171913E98000D90C51 /* objc-win32.h */,
 				36EC54161913E98000D90C51 /* objc-win32.mm */,
 				362901AF191344BE00974216 /* objc-msg-win32.mm */,
@@ -606,7 +610,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = (
 					../include,
-					"$(inherited)",
+					include,
 				);
 				INSTALL_PATH = /usr/lib;
 				LD_NO_PIE = NO;
@@ -667,7 +671,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = (
 					../include,
-					"$(inherited)",
+					include,
 				);
 				INSTALL_PATH = /usr/lib;
 				LD_NO_PIE = NO;
@@ -732,7 +736,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_SHADOW = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = "";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				OTHER_CFLAGS = "-fpic";
 				OTHER_LDFLAGS = "";
@@ -770,7 +774,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_SHADOW = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				HEADER_SEARCH_PATHS = "$(inherited)";
+				HEADER_SEARCH_PATHS = "";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
 				OTHER_CFLAGS = "-fpic";
 				OTHER_LDFLAGS = "";
@@ -929,7 +933,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = (
 					../include,
-					"$(inherited)",
+					include,
 				);
 				INSTALL_PATH = /usr/lib;
 				LD_NO_PIE = NO;
@@ -983,7 +987,7 @@
 				GCC_WARN_ABOUT_DEPRECATED_FUNCTIONS = NO;
 				HEADER_SEARCH_PATHS = (
 					../include,
-					"$(inherited)",
+					include,
 				);
 				INSTALL_PATH = /usr/lib;
 				LD_NO_PIE = NO;

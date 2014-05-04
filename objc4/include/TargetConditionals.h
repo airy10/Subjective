@@ -218,7 +218,7 @@
 
 
 /* H.M. */
-#elif defined(_WIN32)
+#elif defined(WIN32)
     #define TARGET_OS_MAC               0
     #define TARGET_OS_WIN32             1
     #define TARGET_OS_UNIX              0
@@ -240,7 +240,7 @@
 		#define TARGET_RT_64_BIT        0
 	#else
 		/* Nothing to see here, haha. */
-		#error TargetConditionals.h: unknown compiler (see comment above)
+		#error TargetConditionals.h: unknown processor (see comment above)
 	#endif
 
 /*
