@@ -34,15 +34,19 @@
 #include <malloc/malloc.h>
 #include <stdint.h>
 #include <stdbool.h>
-#include <mach/mach.h>
-#include <mach-o/dyld.h>
-#include <mach-o/nlist.h>
 #include <sys/types.h>
-#include <sys/mman.h>
 #include <libkern/OSAtomic.h>
 #include <Block.h>
 #include <map>
-#include <execinfo.h>
+
+#if TARGET_OS_WIN32
+#else
+#   include <mach/mach.h>
+#   include <mach-o/dyld.h>
+#   include <mach-o/nlist.h>
+#   include <sys/mman.h>
+#   include <execinfo.h>
+#endif
 
 @interface NSInvocation
 - (SEL)selector;
@@ -90,7 +94,7 @@ typedef struct _NSZone NSZone;
 
 @end
 
-OBJC_EXPORT
+OBJC_EXPORT_INTF
 @interface NSObject <NSObject>
 {
     Class isa;
@@ -168,6 +172,7 @@ static id defaultBadAllocHandler(Class cls)
 {
     _objc_fatal("attempt to allocate object of class '%s' failed", 
                 class_getName(cls));
+	return nil; // suppress compiler warning
 }
 
 static id(*badAllocHandler)(Class) = &defaultBadAllocHandler;
@@ -486,7 +491,11 @@ class AutoreleasePoolPage
 {
 
 #define POOL_SENTINEL 0
+#if SUPPORT_DIRECT_THREAD_KEYS
     static pthread_key_t const key = AUTORELEASE_POOL_KEY;
+#else
+    static tls_key_t key;
+#endif
     static uint8_t const SCRIBBLE = 0xA3;  // 0xA3A3A3A3 after releasing
     static size_t const SIZE = 
 #if PROTECT_AUTORELEASEPOOL
@@ -498,7 +507,7 @@ class AutoreleasePoolPage
 
     magic_t const magic;
     id *next;
-    pthread_t const thread;
+    objc_thread_t const thread;
     AutoreleasePoolPage * const parent;
     AutoreleasePoolPage *child;
     uint32_t const depth;
@@ -506,12 +515,14 @@ class AutoreleasePoolPage
 
     // SIZE-sizeof(*this) bytes of contents follow
 
+#if !SUBJECTIVE_WIN32
     static void * operator new(size_t size) {
         return malloc_zone_memalign(malloc_default_zone(), SIZE, SIZE);
     }
     static void operator delete(void * p) {
         return free(p);
     }
+#endif
 
     inline void protect() {
 #if PROTECT_AUTORELEASEPOOL
@@ -528,7 +539,7 @@ class AutoreleasePoolPage
     }
 
     AutoreleasePoolPage(AutoreleasePoolPage *newParent) 
-        : magic(), next(begin()), thread(pthread_self()),
+        : magic(), next(begin()), thread(thread_self()),
           parent(newParent), child(NULL), 
           depth(parent ? 1+parent->depth : 0), 
           hiwat(parent ? parent->hiwat : 0)
@@ -566,7 +577,7 @@ class AutoreleasePoolPage
 
     void check(bool die = true) 
     {
-        if (!magic.check() || !pthread_equal(thread, pthread_self())) {
+        if (!magic.check() || !thread_equal(thread, thread_self())) {
             busted(die);
         }
     }
@@ -766,7 +777,7 @@ public:
     {
         assert(obj);
         assert(!OBJC_IS_TAGGED_PTR(obj));
-        id *dest __unused = autoreleaseFast(obj);
+        id *dest = autoreleaseFast(obj);
         assert(!dest  ||  *dest == obj);
         return obj;
     }
@@ -820,9 +831,11 @@ public:
 
     static void init()
     {
-        int r __unused = pthread_key_init_np(AutoreleasePoolPage::key, 
+#if SUPPORT_DIRECT_THREAD_KEYS
+        int r = pthread_key_init_np(AutoreleasePoolPage::key,
                                              AutoreleasePoolPage::tls_dealloc);
         assert(r == 0);
+#endif
     }
 
     void print() 
@@ -845,7 +858,7 @@ public:
     static void printAll()
     {        
         _objc_inform("##############");
-        _objc_inform("AUTORELEASE POOLS for thread %p", pthread_self());
+        _objc_inform("AUTORELEASE POOLS for thread %p", thread_self());
 
         AutoreleasePoolPage *page;
         ptrdiff_t objects = 0;
@@ -876,8 +889,9 @@ public:
             
             _objc_inform("POOL HIGHWATER: new high water mark of %u "
                          "pending autoreleases for thread %p:", 
-                         mark, pthread_self());
-            
+                         mark, thread_self());
+
+#if !TARGET_OS_WIN32
             void *stack[128];
             int count = backtrace(stack, sizeof(stack)/sizeof(stack[0]));
             char **sym = backtrace_symbols(stack, count);
@@ -885,11 +899,18 @@ public:
                 _objc_inform("POOL HIGHWATER:     %s", sym[i]);
             }
             free(sym);
+#endif
         }
     }
 
 #undef POOL_SENTINEL
 };
+
+
+#if !SUPPORT_DIRECT_THREAD_KEYS
+tls_key_t AutoreleasePoolPage::key = tls_create(AutoreleasePoolPage::tls_dealloc);
+#endif
+
 
 // anonymous namespace
 };
@@ -1127,7 +1148,7 @@ _objc_rootDealloc(id obj)
 }
 
 void
-_objc_rootFinalize(id obj __unused)
+_objc_rootFinalize(id obj)
 {
     assert(obj);
     assert(UseGC);
@@ -1608,18 +1629,21 @@ void arr_init(void)
 + (NSMethodSignature *)instanceMethodSignatureForSelector:(SEL)sel {
     _objc_fatal("+[NSObject instanceMethodSignatureForSelector:] "
                 "not available without CoreFoundation");
+	return nil;
 }
 
 // Replaced by CF (returns an NSMethodSignature)
 + (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
     _objc_fatal("+[NSObject methodSignatureForSelector:] "
                 "not available without CoreFoundation");
+	return nil;
 }
 
 // Replaced by CF (returns an NSMethodSignature)
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
     _objc_fatal("-[NSObject methodSignatureForSelector:] "
                 "not available without CoreFoundation");
+	return nil;
 }
 
 + (void)forwardInvocation:(NSInvocation *)invocation {

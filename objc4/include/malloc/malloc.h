@@ -11,7 +11,7 @@
 
 typedef void * malloc_zone_t;
 
-static __inline malloc_zone_t malloc_default_zone(void) { return (malloc_zone_t)-1; }
+static __inline malloc_zone_t* malloc_default_zone(void) { return (malloc_zone_t*)-1; }
 static __inline void *malloc_zone_malloc(malloc_zone_t z, size_t size) { return malloc(size); }
 static __inline void *malloc_zone_calloc(malloc_zone_t z, size_t size, size_t count) { return calloc(size, count); }
 static __inline void *malloc_zone_realloc(malloc_zone_t z, void *p, size_t size) { return realloc(p, size); }

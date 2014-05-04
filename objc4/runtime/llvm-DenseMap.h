@@ -707,6 +707,7 @@ private:
         BucketsPtr++;
     }
     _objc_fatal("DenseMap::LookupBucketFor() failed to find available bucket.\nNumBuckets = %d, EmptyCount = %d, TombstoneCount = %d, ZeroCount = %d, ValueCount = %d\n", NumBuckets, EmptyCount, TombstoneCount, ZeroCount, ValueCount);
+	return NO;
   }
 
   void init(unsigned InitBuckets) {

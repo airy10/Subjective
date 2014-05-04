@@ -280,36 +280,6 @@ int asprintf(char **dstp, const char *format, ...);
 
 // OSAtomic
 
-static __inline BOOL OSAtomicCompareAndSwapLong(long oldl, long newl, long volatile *dst) 
-{ 
-    // fixme barrier is overkill
-    long original = InterlockedCompareExchange(dst, newl, oldl);
-    return (original == oldl);
-}
-
-static __inline BOOL OSAtomicCompareAndSwapPtrBarrier(void *oldp, void *newp, void * volatile *dst) 
-{ 
-    void *original = InterlockedCompareExchangePointer(dst, newp, oldp);
-    return (original == oldp);
-}
-
-static __inline BOOL OSAtomicCompareAndSwap32Barrier(int32_t oldl, int32_t newl, int32_t volatile *dst) 
-{ 
-    long original = InterlockedCompareExchange((volatile long *)dst, newl, oldl);
-    return (original == oldl);
-}
-
-static __inline int32_t OSAtomicDecrement32Barrier(volatile int32_t *dst)
-{
-    return InterlockedDecrement((volatile long *)dst);
-}
-
-static __inline int32_t OSAtomicIncrement32Barrier(volatile int32_t *dst)
-{
-    return InterlockedIncrement((volatile long *)dst);
-}
-
-
 // Internal data types
 
 typedef DWORD objc_thread_t;  // thread ID
@@ -335,6 +305,12 @@ static __inline void *tls_get(tls_key_t k) {
     return TlsGetValue(k.key); 
 }
 static __inline void tls_set(tls_key_t k, void *value) { 
+    TlsSetValue(k.key, value); 
+}
+static __inline void *tls_get_direct(tls_key_t k) {
+    return TlsGetValue(k.key); 
+}
+static __inline void tls_set_direct(tls_key_t k, void *value) {
     TlsSetValue(k.key, value); 
 }
 
@@ -363,12 +339,6 @@ static __inline int _mutex_unlock_nodebug(mutex_t *m) {
     LeaveCriticalSection(m->lock); 
     return 0;
 }
-
-
-typedef mutex_t OSSpinLock;
-#define OSSpinLockLock(l) mutex_lock(l)
-#define OSSpinLockUnlock(l) mutex_unlock(l)
-#define OS_SPINLOCK_INIT MUTEX_INITIALIZER
 
 
 typedef struct {

@@ -32,7 +32,7 @@
 #endif
 
 #if SUBJECTIVE && !defined(SUBJECTIVE_WIN32)
-#   if _WIN32
+#   if WIN32
 #       define SUBJECTIVE_WIN32 1
 #   else
 #       define SUBJECTIVE_WIN32 0

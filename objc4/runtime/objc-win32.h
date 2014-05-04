@@ -1,9 +1,8 @@
 #ifndef _OBJC_WIN32_H_
 #define _OBJC_WIN32_H_
 
-#include <TargetConditionals.h>
 
-#if TAGRET_OS_WIN32
+#if SUBJECTIVE_WIN32
 
 #include <objc/objc-api.h>
 

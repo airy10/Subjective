@@ -102,7 +102,7 @@
 #endif
 
 #if !defined(OBJC_VISIBLE)
-#   if TARGET_OS_WIN32
+#   if TARGET_OS_WIN32 && !SUBJECTIVE_WIN32
 #       if defined(BUILDING_OBJC)
 #           define OBJC_VISIBLE __declspec(dllexport)
 #       else
