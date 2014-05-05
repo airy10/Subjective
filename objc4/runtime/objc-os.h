@@ -220,7 +220,7 @@ extern void _objc_fatal(const char *fmt, ...) __attribute__((noreturn, format (p
 #define INIT_ONCE_PTR(var, create, delete)                              \
     do {                                                                \
         if (var) break;                                                 \
-        typeof(var) v = create;                                         \
+        auto v = create;                                                \
         while (!var) {                                                  \
             if (OSAtomicCompareAndSwapPtrBarrier(0, (void*)v, (void**)&var)){ \
                 goto done;                                              \
@@ -233,7 +233,7 @@ extern void _objc_fatal(const char *fmt, ...) __attribute__((noreturn, format (p
 #define INIT_ONCE_32(var, create, delete)                               \
     do {                                                                \
         if (var) break;                                                 \
-        typeof(var) v = create;                                         \
+        auto v = create;                                                \
         while (!var) {                                                  \
             if (OSAtomicCompareAndSwap32Barrier(0, v, (volatile int32_t *)&var)) { \
                 goto done;                                              \
@@ -464,8 +464,8 @@ static inline int monitor_notifyAll(monitor_t *c) {
 
 
 typedef IMAGE_DOS_HEADER headerType;
-// fixme YES bundle? NO bundle? sometimes?
-#define headerIsBundle(hi) YES
+// fixme YES bundle? NO bundle? sometimes? (I think it should be NO -- H.M.)
+#define headerIsBundle(hi) NO
 OBJC_EXTERN IMAGE_DOS_HEADER __ImageBase;
 #define libobjc_header ((headerType *)&__ImageBase)
 

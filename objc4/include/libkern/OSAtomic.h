@@ -2,13 +2,18 @@
 #ifndef SUBJ_LIBKERN_OSATOMIC__H
 #define SUBJ_LIBKERN_OSATOMIC__H
 
-#if defined(SUBJECTIVE_WIN32) && SUBJECTIVE_WIN32
+#if TARGET_OS_WIN32
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-#include <Windows.h>
+#include <stdint.h>
+
+#define WIN32_LEAN_AND_MEAN
+#define BOOL WINBOOL
+#include <windows.h>
+#undef BOOL
 
 
 static inline bool OSAtomicCompareAndSwapLong(long oldl, long newl, long volatile *dst)

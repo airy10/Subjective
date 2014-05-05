@@ -2,7 +2,7 @@
 #ifndef _SUBJ_MALLOC_MALLOC_H_
 #define _SUBJ_MALLOC_MALLOC_H_
 
-#if defined(SUBJECTIVE_WIN32) && SUBJECTIVE_WIN32
+#if TARGET_OS_WIN32
 
 // static __inline void bcopy(const void *src, void *dst, size_t size) { memcpy(dst, src, size); }
 // static __inline void bzero(void *dst, size_t size) { memset(dst, 0, size); }

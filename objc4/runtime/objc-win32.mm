@@ -3,24 +3,42 @@
 
 #if TARGET_OS_WIN32
 
-#define WIN32_LEAN_AND_MEAN
-
 #include <stdio.h>
-#include <windows.h>
 #include <stdlib.h>
 
+#define WIN32_LEAN_AND_MEAN
+#include <windows.h>
+
 #include "objc-win32.h"
+
+
+
+typedef struct {
+    int count;  // number of pointer pairs that follow
+    void *modStart;
+    void *modEnd;
+    void *protoStart;
+    void *protoEnd;
+    void *iiStart;
+    void *iiEnd;
+    void *selrefsStart;
+    void *selrefsEnd;
+    void *clsrefsStart;
+    void *clsrefsEnd;
+} objc_sections;
+
+
+OBJC_EXPORT void *_objc_init_image(HMODULE image, const objc_sections *sects);
+OBJC_EXPORT void _objc_load_image(HMODULE image, void *hinfo);
+OBJC_EXPORT void _objc_unload_image(HMODULE image, void *hinfo);
+
 
 
 WINBOOL APIENTRY DllMain(HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpReserved)
 {
     switch (ul_reason_for_call) {
     case DLL_PROCESS_ATTACH:
-        environ_init();
-        tls_init();
-        lock_init();
-        sel_init(NO, 3500);  // old selector heuristic
-        exception_init();
+		_objc_init();
         break;
 
     case DLL_THREAD_ATTACH:
@@ -151,8 +169,12 @@ static uintptr_t __objc_clsrefsEnd = 0;
 static void *__hinfo = NULL;  // cookie from runtime
 extern IMAGE_DOS_HEADER __ImageBase;  // this image's header
 
-static int __objc_init(void)
+void __objc_init(void)
 {
+    static bool initialized = false;
+    if (initialized) return;
+    initialized = true;
+
     objc_sections sections = {
         5, 
         &__objc_modStart, &__objc_modEnd, 
@@ -162,7 +184,12 @@ static int __objc_init(void)
         &__objc_clsrefsStart, &__objc_clsrefsEnd, 
     };
     __hinfo = _objc_init_image((HMODULE)&__ImageBase, &sections);
-    return 0;
+	environ_init();
+	tls_init();
+	lock_init();
+	sel_init(NO, 3500);  // old selector heuristic
+	exception_init();
+    _objc_load_image((HMODULE)&__ImageBase, __hinfo);
 }
 
 static void __objc_unload(void)
@@ -170,22 +197,24 @@ static void __objc_unload(void)
     _objc_unload_image((HMODULE)&__ImageBase, __hinfo);
 }
 
+/*
 static int __objc_load(void)
 {
     _objc_load_image((HMODULE)&__ImageBase, __hinfo);
     return 0;
 }
+*/
 
 // run _objc_init_image ASAP
-#pragma section(".CRT$XIAA",long,read,write)
-#pragma data_seg(".CRT$XIAA")
-static void *__objc_init_fn = &__objc_init;
+// #pragma section(".CRT$XIAA",long,read,write)
+// #pragma data_seg(".CRT$XIAA")
+// static void *__objc_init_fn = &__objc_init;
 
 // run _objc_load_image (+load methods) after all other initializers; 
 // otherwise constant NSStrings are not initialized yet
-#pragma section(".CRT$XCUO",long,read,write)
-#pragma data_seg(".CRT$XCUO")
-static void *__objc_load_fn = &__objc_load;
+// #pragma section(".CRT$XCUO",long,read,write)
+// #pragma data_seg(".CRT$XCUO")
+// static void *__objc_load_fn = &__objc_load;
 
 // _objc_unload_image is called by atexit(), not by an image terminator
 

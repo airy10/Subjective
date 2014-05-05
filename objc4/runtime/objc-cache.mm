@@ -299,7 +299,7 @@ static Cache _cache_malloc(uintptr_t slotCount)
     new_cache->mask = slotCount - 1;
 #elif !defined(CACHE_ALLOCATOR)
     // fixme cache allocator implementation isn't 64-bit clean
-    new_cache = _calloc_internal(size, 1);
+    new_cache = (Cache)_calloc_internal(size, 1);
     new_cache->mask = (unsigned int)(slotCount - 1);
 #else
     if (size < CACHE_ALLOCATOR_MIN  ||  UseInternalZone) {

@@ -288,6 +288,8 @@ bool noSideTableLocksHeld(void)
 // The -fobjc-arc flag causes the compiler to issue calls to objc_{retain/release/autorelease/retain_block}
 //
 
+#if SUPPORT_BLOCKS
+
 id objc_retainBlock(id x) {
 #if ARR_LOGGING
     objc_arr_log("objc_retain_block", x);
@@ -295,6 +297,9 @@ id objc_retainBlock(id x) {
 #endif
     return (id)_Block_copy(x);
 }
+
+#endif
+
 
 //
 // The following SHOULD be called by the compiler directly, but the request hasn't been made yet :-)

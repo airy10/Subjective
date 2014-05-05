@@ -156,6 +156,8 @@
 * Imports.
 **********************************************************************/
 
+#include <libkern/OSAtomic.h>
+
 #include "objc-private.h"
 #include "objc-abi.h"
 #include <objc/message.h>
@@ -1119,8 +1121,12 @@ void _free_internal(void *ptr)
 
 size_t _malloc_size_internal(void *ptr)
 {
+#if TARGET_OS_WIN32
+	return malloc_size(ptr);
+#else
     malloc_zone_t *zone = _objc_internal_zone();
     return zone->size(zone, ptr);
+#endif
 }
 
 Class _calloc_class(size_t size)

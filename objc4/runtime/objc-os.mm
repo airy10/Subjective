@@ -518,8 +518,11 @@ static const char *gc_enforcer(enum dyld_image_states state,
 #include "objc-file-old.h"
 #endif
 
+
+#if !TARGET_OS_WIN32
+
 const char *
-map_images_nolock(enum dyld_image_states state, uint32_t infoCount,
+map_images_nolock(uint32_t infoCount,
                   const struct dyld_image_info infoList[])
 {
     static BOOL firstTime = YES;
@@ -650,8 +653,8 @@ map_images_nolock(enum dyld_image_states state, uint32_t infoCount,
 *
 * Locking: loadMethodLock(both) and runtimeLock(new) acquired by load_images
 **********************************************************************/
-BOOL 
-load_images_nolock(enum dyld_image_states state,uint32_t infoCount,
+BOOL
+load_images_nolock(uint32_t infoCount,
                    const struct dyld_image_info infoList[])
 {
     BOOL found = NO;
@@ -726,7 +729,10 @@ unmap_image_nolock(const struct mach_header *mh)
     removeHeader(hi);
     _free_internal(hi);
 }
+#endif
 
+
+#if !TARGET_OS_WIN32
 
 /***********************************************************************
 * _objc_init
@@ -770,6 +776,9 @@ static struct _objc_initializer_
 	}
 } _objc_initializer_var;
 
+#endif
+
+// !TARGET_OS_WIN32
 #endif
 
 

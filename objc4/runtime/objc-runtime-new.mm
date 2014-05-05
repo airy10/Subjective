@@ -28,6 +28,8 @@
 
 #if __OBJC2__
 
+#include <libkern/OSAtomic.h>
+
 #include "objc-os.h"
 #include "objc-private.h"
 #include "objc-runtime-new.h"
@@ -1084,7 +1086,7 @@ static void addUnattachedCategoryForClass(category_t *cat, class_t *cls,
 {
     rwlock_assert_writing(&runtimeLock);
 
-    BOOL catFromBundle = (catHeader->mhdr->filetype == MH_BUNDLE) ? YES: NO;
+    bool catFromBundle = headerIsBundle(catHeader);
 
     // DO NOT use cat->cls! cls may be cat->cls->isa instead
     NXMapTable *cats = unattachedCategories();
@@ -2851,6 +2853,8 @@ void flush_caches(Class cls_gen, BOOL flush_meta)
 }
 
 
+#if !TARGET_OS_WIN32
+
 /***********************************************************************
 * map_images
 * Process the given images which are being mapped in by dyld.
@@ -2865,7 +2869,7 @@ map_images(enum dyld_image_states state, uint32_t infoCount,
     const char *err;
 
     rwlock_write(&runtimeLock);
-    err = map_images_nolock(state, infoCount, infoList);
+    err = map_images_nolock(infoCount, infoList);
     rwlock_unlock_write(&runtimeLock);
     return err;
 }
@@ -2888,7 +2892,7 @@ load_images(enum dyld_image_states state, uint32_t infoCount,
 
     // Discover load methods
     rwlock_write(&runtimeLock);
-    found = load_images_nolock(state, infoCount, infoList);
+    found = load_images_nolock(infoCount, infoList);
     rwlock_unlock_write(&runtimeLock);
 
     // Call +load methods (without runtimeLock - re-entrant)
@@ -2900,6 +2904,8 @@ load_images(enum dyld_image_states state, uint32_t infoCount,
 
     return NULL;
 }
+
+#endif
 
 
 /***********************************************************************
@@ -2995,7 +3001,7 @@ void _read_images(header_info **hList, uint32_t hCount)
     NXMapTable *future_named_class_map = futureNamedClasses();
 
     for (EACH_HEADER) {
-        bool headerIsBundle = (hi->mhdr->filetype == MH_BUNDLE);
+        bool isBundle = headerIsBundle(hi);
         bool headerInSharedCache = hi->inSharedCache;
 
         classref_t *classlist = _getObjc2ClassList(hi, &count);
@@ -3052,7 +3058,7 @@ void _read_images(header_info **hList, uint32_t hCount)
             }             
 
             // for future reference: shared cache never contains MH_BUNDLEs
-            if (headerIsBundle) {
+            if (isBundle) {
                 cls->data()->flags |= RO_FROM_BUNDLE;
                 cls->isa->data()->flags |= RO_FROM_BUNDLE;
             }
@@ -3118,7 +3124,7 @@ void _read_images(header_info **hList, uint32_t hCount)
         if (sel_preoptimizationValid(hi)) continue;
 
         SEL *sels = _getObjc2SelectorRefs(hi, &count);
-        BOOL isBundle = hi->mhdr->filetype == MH_BUNDLE;
+        bool isBundle = headerIsBundle(hi);
         for (i = 0; i < count; i++) {
             sels[i] = sel_registerNameNoLock((const char *)sels[i], isBundle);
         }

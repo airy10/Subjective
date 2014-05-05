@@ -2,6 +2,9 @@
 TRIPLE = i686-pc-win32
 MINGW = i686-w64-mingw32
 
+# The following is for the <*intrin.h>
+CLANG_TOOLCHAIN_DIR=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/5.1
+
 BUILD_DIR = build
 
 BUILD_OBJ_DIR = $(BUILD_DIR)/$(TRIPLE)/objects
@@ -9,6 +12,7 @@ BUILD_OBJ_DIR = $(BUILD_DIR)/$(TRIPLE)/objects
 TARGET = -target $(TRIPLE)
 
 INCLUDE = -Iinclude -I../include -I../include/objc \
+	-isystem $(CLANG_TOOLCHAIN_DIR)/include \
 	-isystem /usr/local/$(MINGW)/include \
 	-isystem /usr/local/lib/gcc/$(MINGW)/4.9.0/include \
 	-isystem /usr/local/$(MINGW)/include/c++/4.9.0/ \
@@ -32,7 +36,7 @@ C_OPTS = $(TARGET) \
 
 CC_OPTS = $(C_OPTS) -std=gnu99
 
-CXX_OPTS = $(C_OPTS) -std=c++03
+CXX_OPTS = $(C_OPTS) -std=c++11 -fno-ms-compatibility
 
 CXX_OPTS_TEST = $(CXX_OPTS) -UBUILDING_OBJC -fobjc-arc
 
@@ -52,12 +56,14 @@ LD_OPTS=
 PRODUCT=test.exe
 OBJS= \
 	$(BUILD_OBJ_DIR)/test.o \
+	$(BUILD_OBJ_DIR)/objc-errors.o \
 	$(BUILD_OBJ_DIR)/objc-msg-i386.o \
 	$(BUILD_OBJ_DIR)/NSObject.o \
-	# $(BUILD_OBJ_DIR)/objc-msg-win32.o \
-	# $(BUILD_OBJ_DIR)/objc-errors.o \
-	# $(BUILD_OBJ_DIR)/objc-class.o \
-	# $(BUILD_OBJ_DIR)/objc-runtime-new.o \
+	$(BUILD_OBJ_DIR)/objc-cache.o \
+	$(BUILD_OBJ_DIR)/objc-runtime-new.o \
+	$(BUILD_OBJ_DIR)/objc-class.o \
+	$(BUILD_OBJ_DIR)/objc-sel.o \
+	$(BUILD_OBJ_DIR)/objc-weak.o \
 
 
 all: $(BUILD_OBJ_DIR) $(PRODUCT)
