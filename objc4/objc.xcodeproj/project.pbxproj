@@ -117,7 +117,7 @@
 		362901AF191344BE00974216 /* objc-msg-win32.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-msg-win32.mm"; path = "runtime/Messengers.subproj/objc-msg-win32.mm"; sourceTree = "<group>"; };
 		365A83BC1916D6E7005287F1 /* OSAtomic.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OSAtomic.h; path = include/libkern/OSAtomic.h; sourceTree = "<group>"; };
 		365A83BD1916DEC7005287F1 /* malloc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = malloc.h; path = include/malloc/malloc.h; sourceTree = "<group>"; };
-		368E8E2F19158308002E763D /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		368E8E2F19158308002E763D /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = README; path = ../README; sourceTree = "<group>"; };
 		368E8E5D1915C89A002E763D /* libobjc32.a */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = libobjc32.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		36EC54161913E98000D90C51 /* objc-win32.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-win32.mm"; path = "runtime/objc-win32.mm"; sourceTree = "<group>"; };
 		36EC54171913E98000D90C51 /* objc-win32.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "objc-win32.h"; path = "runtime/objc-win32.h"; sourceTree = "<group>"; };
@@ -301,7 +301,7 @@
 		36EC54191913FA4100D90C51 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				368E8E2F19158308002E763D /* README.md */,
+				368E8E2F19158308002E763D /* README */,
 				36EC541A1913FA5100D90C51 /* libobjc.order */,
 				36EC541B1913FA5100D90C51 /* markgc.c */,
 				36EC541C1913FA5100D90C51 /* unexported_symbols */,

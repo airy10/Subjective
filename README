@@ -1,13 +1,15 @@
 
-##*SUBJECTIVE*: Windows Port of the Objective-C Runtime
+SUBJECTIVE: Windows Port of the Objective-C 2.0 Runtime
+============================================================================
+
 
 ----------------------------------------------------------------------------
-
-**This is a work in progress. Please be *impatient*, contribute!**
-
+     This is a work in progress. Please be *impatient*, contribute!
 ----------------------------------------------------------------------------
 
-*SUBJECTIVE* is an attempt to bring Objective C with ARC support to Windows.
+
+SUBJECTIVE is an attempt to bring Objective C 2.0 with ARC support to Windows.
+
 
 This project is a fork of objc4-532.2, the Objective C runtime, available at
 opensource.apple.com. It can be compiled using the latest llvm-clang either
@@ -31,7 +33,10 @@ preoptimizations, no "zero-cost try"
 Many of these limitations apply to ObjC on 32-bit iOS systems anyway.
 
 
-Prerequisites:
+Prerequisites (OS X):
 
 • MinGW cross-compile environment for OS X:
 http://mingw-w64.sourceforge.net/download.php
+
+• Xcode 5.x; clang shipped with Xcode suits fine
+
