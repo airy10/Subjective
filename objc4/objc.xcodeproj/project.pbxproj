@@ -143,7 +143,7 @@
 		83725F4914CA5BFA0014370E /* objc-opt.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "objc-opt.mm"; path = "runtime/objc-opt.mm"; sourceTree = "<group>"; };
 		8383A3A1122600E9009290B8 /* a1a2-blocktramps-arm.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = "a1a2-blocktramps-arm.s"; path = "runtime/a1a2-blocktramps-arm.s"; sourceTree = "<group>"; };
 		8383A3A2122600E9009290B8 /* a2a3-blocktramps-arm.s */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.asm; name = "a2a3-blocktramps-arm.s"; path = "runtime/a2a3-blocktramps-arm.s"; sourceTree = "<group>"; };
-		838485B70D6D687300CEA253 /* hashtable2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = hashtable2.h; sourceTree = "<group>"; };
+		838485B70D6D687300CEA253 /* hashtable2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hashtable2.h; path = ../include/objc/hashtable2.h; sourceTree = "<group>"; };
 		838485B80D6D687300CEA253 /* hashtable2.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = hashtable2.mm; path = runtime/hashtable2.mm; sourceTree = "<group>"; };
 		838485BB0D6D687300CEA253 /* maptable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = maptable.h; sourceTree = "<group>"; };
 		838485BC0D6D687300CEA253 /* maptable.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = maptable.mm; path = runtime/maptable.mm; sourceTree = "<group>"; };
@@ -350,7 +350,6 @@
 			isa = PBXGroup;
 			children = (
 				830F2A970D738DC200392440 /* hashtable.h */,
-				838485B70D6D687300CEA253 /* hashtable2.h */,
 				838485CD0D6D68A200CEA253 /* objc-class.h */,
 				838485D70D6D68A200CEA253 /* objc-load.h */,
 				838485E30D6D68A200CEA253 /* objc-runtime.h */,
@@ -374,6 +373,7 @@
 		8384862A0D6D6ABC00CEA253 /* Project Headers */ = {
 			isa = PBXGroup;
 			children = (
+				838485B70D6D687300CEA253 /* hashtable2.h */,
 				830F2A920D73876100392440 /* objc-accessors.h */,
 				838485CF0D6D68A200CEA253 /* objc-config.h */,
 				83BE02E60FCCB24D00661494 /* objc-file.h */,

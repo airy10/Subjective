@@ -77,6 +77,9 @@ OBJS= \
 	$(BUILD_OBJ_DIR)/objc-opt.o \
 	$(BUILD_OBJ_DIR)/objc-layout.o \
 	$(BUILD_OBJ_DIR)/objc-loadmethod.o \
+	$(BUILD_OBJ_DIR)/objc-typeencoding.o \
+	$(BUILD_OBJ_DIR)/objc-sel-set.o \
+	$(BUILD_OBJ_DIR)/objc-win32.o
 
 
 all: $(BUILD_OBJ_DIR) $(PRODUCT)
