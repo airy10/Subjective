@@ -34,7 +34,10 @@
 
 #include <stdlib.h>
 #include <setjmp.h>
+
+#if !TARGET_OS_WIN32
 #include <execinfo.h>
+#endif
 
 
 static objc_exception_functions_t xtab;
@@ -74,9 +77,11 @@ void objc_exception_throw(id exception) {
     if (PrintExceptionThrow) {
         _objc_inform("EXCEPTIONS: throwing %p (%s)", 
                      exception, object_getClassName(exception));
+#if !TARGET_OS_WIN32
         void* callstack[500];
         int frameCount = backtrace(callstack, 500);
         backtrace_symbols_fd(callstack, frameCount, fileno(stderr));
+#endif
     }
 
     OBJC_RUNTIME_OBJC_EXCEPTION_THROW(exception);  // dtrace probe to log throw activity.
@@ -279,7 +284,7 @@ OBJC_EXTERN uintptr_t _Unwind_GetIP (struct _Unwind_Context *);
 OBJC_EXTERN uintptr_t _Unwind_GetCFA (struct _Unwind_Context *);
 OBJC_EXTERN uintptr_t _Unwind_GetLanguageSpecificData(struct _Unwind_Context *);
 
-
+/*
 // C++ runtime types and functions
 // copied from cxxabi.h
 
@@ -289,6 +294,7 @@ OBJC_EXTERN void *__cxa_begin_catch(void *exc);
 OBJC_EXTERN void __cxa_end_catch(void);
 OBJC_EXTERN void __cxa_rethrow(void);
 OBJC_EXTERN void *__cxa_current_exception_type(void);
+*/
 
 #if SUPPORT_ZEROCOST_EXCEPTIONS
 #   define CXX_PERSONALITY __gxx_personality_v0

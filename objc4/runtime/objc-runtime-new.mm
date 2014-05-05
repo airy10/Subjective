@@ -950,7 +950,13 @@ static uint32_t method_list_count(const method_list_t *mlist)
 static void method_list_swap(method_list_t *mlist, uint32_t i, uint32_t j)
 {
     size_t entsize = method_list_entsize(mlist);
-    char temp[entsize];
+	// H.M. fixme: clang on WIN32 generates a call to _chkstk which for some
+	//    reason is not available in MinGW. Thus we allocate a fixed buffer
+	//    below. Change it if you get crashes.
+    // char temp[entsize];
+	char temp[2048];
+	if (entsize > 2048)
+		_objc_fatal("Internal: entsize=%u", entsize);
     memcpy(temp, method_list_nth(mlist, i), entsize);
     memcpy(method_list_nth(mlist, i), method_list_nth(mlist, j), entsize);
     memcpy(method_list_nth(mlist, j), temp, entsize);
@@ -2905,8 +2911,6 @@ load_images(enum dyld_image_states state, uint32_t infoCount,
     return NULL;
 }
 
-#endif
-
 
 /***********************************************************************
 * unmap_image
@@ -2927,6 +2931,9 @@ unmap_image(const struct mach_header *mh, intptr_t vmaddr_slide)
     rwlock_unlock_write(&runtimeLock);
     recursive_mutex_unlock(&loadMethodLock);
 }
+
+// !TARGET_OS_WIN32
+#endif
 
 
 

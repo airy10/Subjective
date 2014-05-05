@@ -25,6 +25,8 @@
 */
 
 
+#include <libkern/OSAtomic.h>
+
 #include "objc-private.h"
 #include <objc/message.h>
 #include <map>
@@ -165,7 +167,7 @@ namespace objc_references_support {
         bool hasValue() { return _value != nil; }
     };
 
-#if TARGET_OS_WIN32
+#if 0 && TARGET_OS_WIN32
     typedef hash_map<void *, ObjcAssociation> ObjectAssociationMap;
     typedef hash_map<disguised_ptr_t, ObjectAssociationMap *> AssociationsHashMap;
 #else

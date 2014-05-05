@@ -26,7 +26,7 @@
 
 /* H.M. */
 #if SUBJECTIVE_WIN32
-#   define private_extern extern
+#   define private_extern globl
 #   define cstring text
 #endif
 

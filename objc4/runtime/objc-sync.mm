@@ -21,6 +21,8 @@
  * @APPLE_LICENSE_HEADER_END@
  */
 
+#include <libkern/OSAtomic.h>
+
 #include "objc-private.h"
 #include "objc-sync.h"
 

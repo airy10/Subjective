@@ -594,9 +594,11 @@ const char *class_getImageName(Class cls)
 #endif
 #if TARGET_OS_WIN32
 	charactersCopied = 0;
-	szFileName = malloc(MAX_PATH * sizeof(TCHAR));
+	szFileName = (TCHAR *)malloc(MAX_PATH * sizeof(TCHAR));
 	
-	origCls = objc_getOrigClass(class_getName(cls));
+	// H.M. fixme: is the below correct?
+	// origCls = objc_getOrigClass(class_getName(cls));
+	origCls = cls;
 	classModule = NULL;
 	res = GetModuleHandleEx(GET_MODULE_HANDLE_EX_FLAG_FROM_ADDRESS, (LPCTSTR)origCls, &classModule);
 	if (res && classModule) {
@@ -665,7 +667,7 @@ objc_copyClassNamesForImage(const char *image, unsigned int *outCount)
     // Find the image.
     for (hi = FirstHeader; hi != NULL; hi = hi->next) {
 #if TARGET_OS_WIN32
-        if (0 == wcscmp((TCHAR *)image, hi->moduleName)) break;
+        if (0 == strcmp(image, hi->moduleName)) break;
 #else
         if (0 == strcmp(image, hi->fname)) break;
 #endif

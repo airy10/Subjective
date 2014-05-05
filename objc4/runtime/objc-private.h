@@ -164,6 +164,7 @@ typedef struct _header_info {
     struct old_protocol **proto_refs;
     struct objc_module *mod_ptr;
     size_t              mod_count;
+#endif
 # if TARGET_OS_WIN32
     struct objc_module **modules;
     size_t moduleCount;
@@ -177,7 +178,6 @@ typedef struct _header_info {
     size_t clsrefCount;    
     TCHAR *moduleName;
 # endif
-#endif
 } header_info;
 
 extern header_info *FirstHeader;

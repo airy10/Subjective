@@ -42,10 +42,8 @@ OBJC_EXPORT BOOL objc_collectingEnabled(void) { return 0; }
 
 #if TARGET_OS_WIN32
 
-@error this is all wrong, fix me!
-
 #include "objc-runtime-old.h"
-#include "objcrt.h"
+
 
 malloc_zone_t *_objc_internal_zone(void) 
 { 
@@ -79,10 +77,10 @@ int monitor_init(monitor_t *c)
 void mutex_init(mutex_t *m)
 {
     while (!m->lock) {
-        CRITICAL_SECTION *newlock = malloc(sizeof(CRITICAL_SECTION));
+        CRITICAL_SECTION *newlock = (CRITICAL_SECTION *)malloc(sizeof(CRITICAL_SECTION));
         InitializeCriticalSection(newlock);
         // fixme memory barrier here?
-        if (0 == InterlockedCompareExchangePointer(&m->lock, newlock, 0)) {
+        if (0 == InterlockedCompareExchangePointer((PVOID*)&m->lock, newlock, 0)) {
             return;
         }
         // someone else installed their lock first

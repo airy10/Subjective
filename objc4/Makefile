@@ -30,13 +30,14 @@ CC_OTHER = -Wno-deprecated-objc-pointer-introspection \
 CC = /usr/bin/clang
 
 C_OPTS = $(TARGET) \
-	-arch i386 -nostdinc -fobjc-runtime=macosx \
+	-nostdinc -fobjc-runtime=macosx \
 	-Os \
+	-fno-ms-compatibility \
 	$(DEFINES) $(INCLUDE) $(CC_OTHER)
 
 CC_OPTS = $(C_OPTS) -std=gnu99
 
-CXX_OPTS = $(C_OPTS) -std=c++11 -fno-ms-compatibility
+CXX_OPTS = $(C_OPTS) -std=c++11
 
 CXX_OPTS_TEST = $(CXX_OPTS) -UBUILDING_OBJC -fobjc-arc
 
@@ -49,21 +50,33 @@ AS_OPTS = $(TARGET) -x assembler-with-cpp -I../include -Iruntime \
 	$(DEFINES) $(INCLUDE)
 
 
-LD=/usr/local/bin/$(MINGW)-gcc
-LD_OPTS=
+LD = /usr/local/bin/$(MINGW)-g++
+LD_OPTS = $(LD_LIBS)
 
 
 PRODUCT=test.exe
 OBJS= \
 	$(BUILD_OBJ_DIR)/test.o \
+	$(BUILD_OBJ_DIR)/maptable.o \
+	$(BUILD_OBJ_DIR)/hashtable2.o \
 	$(BUILD_OBJ_DIR)/objc-errors.o \
 	$(BUILD_OBJ_DIR)/objc-msg-i386.o \
+	$(BUILD_OBJ_DIR)/objc-os.o \
+	$(BUILD_OBJ_DIR)/Protocol.o \
 	$(BUILD_OBJ_DIR)/NSObject.o \
 	$(BUILD_OBJ_DIR)/objc-cache.o \
+	$(BUILD_OBJ_DIR)/objc-runtime.o \
 	$(BUILD_OBJ_DIR)/objc-runtime-new.o \
 	$(BUILD_OBJ_DIR)/objc-class.o \
 	$(BUILD_OBJ_DIR)/objc-sel.o \
 	$(BUILD_OBJ_DIR)/objc-weak.o \
+	$(BUILD_OBJ_DIR)/objc-sync.o \
+	$(BUILD_OBJ_DIR)/objc-initialize.o \
+	$(BUILD_OBJ_DIR)/objc-exception.o \
+	$(BUILD_OBJ_DIR)/objc-references.o \
+	$(BUILD_OBJ_DIR)/objc-opt.o \
+	$(BUILD_OBJ_DIR)/objc-layout.o \
+	$(BUILD_OBJ_DIR)/objc-loadmethod.o \
 
 
 all: $(BUILD_OBJ_DIR) $(PRODUCT)

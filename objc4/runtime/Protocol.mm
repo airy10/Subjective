@@ -28,8 +28,6 @@
 
 #include <stdlib.h>
 #include <string.h>
-#include <mach-o/dyld.h>
-#include <mach-o/ldsyms.h>
 
 #include "Protocol.h"
 #include "objc-private.h"
