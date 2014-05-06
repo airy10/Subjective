@@ -53,20 +53,19 @@ AS_OPTS = -x assembler-with-cpp -I../include -Iruntime \
 	$(DEFINES) $(INCLUDE)
 
 
-LD = /usr/local/bin/$(MINGW)-g++ -m32
+LD = /usr/local/bin/$(MINGW)-g++
 LD_LIBS =
-LD_OPTS = $(LD_LIBS) -static-libgcc -static
+LD_OPTS = $(LD_LIBS) -static
 
 
 PRODUCT=test.exe
 OBJS= \
-	$(BUILD_OBJ_DIR)/objc-sections-win32.o \
+	$(BUILD_OBJ_DIR)/maptable.o \
+	$(BUILD_OBJ_DIR)/hashtable2.o \
 	$(BUILD_OBJ_DIR)/objc-win32.o \
 	$(BUILD_OBJ_DIR)/objc-msg-i386.o \
 	$(BUILD_OBJ_DIR)/objc-runtime-new.o \
 	$(BUILD_OBJ_DIR)/objc-class.o \
-	$(BUILD_OBJ_DIR)/maptable.o \
-	$(BUILD_OBJ_DIR)/hashtable2.o \
 	$(BUILD_OBJ_DIR)/objc-errors.o \
 	$(BUILD_OBJ_DIR)/objc-os.o \
 	$(BUILD_OBJ_DIR)/Protocol.o \
@@ -85,6 +84,7 @@ OBJS= \
 	$(BUILD_OBJ_DIR)/objc-typeencoding.o \
 	$(BUILD_OBJ_DIR)/objc-sel-set.o \
 	$(BUILD_OBJ_DIR)/test.o \
+	$(BUILD_OBJ_DIR)/objc-sections-win32.o \
 
 
 all: $(BUILD_OBJ_DIR) $(PRODUCT)

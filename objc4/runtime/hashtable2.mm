@@ -111,19 +111,22 @@ static NXHashTablePrototype protoPrototype = {
     hashPrototype, isEqualPrototype, NXNoEffectFree, 0
     };
 
-static NXHashTable *prototypes = NULL;
+// H.M. -- when the name of the thing below is set to its original `prototypes`
+// ld refuses to allocate it properly and the app crashes. Dangerous name?
+// Weird!
+static NXHashTable *NXPrototypes = NULL;
 	/* table of all prototypes */
 
 static void bootstrap (void) {
     free(malloc(8));
-    prototypes = ALLOCTABLE (DEFAULT_ZONE);
-    prototypes->prototype = &protoPrototype; 
-    prototypes->count = 1;
-    prototypes->nbBuckets = 1; /* has to be 1 so that the right bucket is 0 */
-    prototypes->buckets = ALLOCBUCKETS(DEFAULT_ZONE, 1);
-    prototypes->info = NULL;
-    ((HashBucket *) prototypes->buckets)[0].count = 1;
-    ((HashBucket *) prototypes->buckets)[0].elements.one = &protoPrototype;
+    NXPrototypes = ALLOCTABLE (DEFAULT_ZONE);
+    NXPrototypes->prototype = &protoPrototype;
+    NXPrototypes->count = 1;
+    NXPrototypes->nbBuckets = 1; /* has to be 1 so that the right bucket is 0 */
+    NXPrototypes->buckets = ALLOCBUCKETS(DEFAULT_ZONE, 1);
+    NXPrototypes->info = NULL;
+    ((HashBucket *) NXPrototypes->buckets)[0].count = 1;
+    ((HashBucket *) NXPrototypes->buckets)[0].elements.one = &protoPrototype;
     };
 
 int NXPtrIsEqual (const void *info, const void *data1, const void *data2) {
@@ -145,7 +148,7 @@ NXHashTable *NXCreateHashTableFromZone (NXHashTablePrototype prototype, unsigned
     NXHashTablePrototype	*proto;
     
     table = ALLOCTABLE(z);
-    if (! prototypes) bootstrap ();
+    if (! NXPrototypes) bootstrap ();
     if (! prototype.hash) prototype.hash = NXPtrHash;
     if (! prototype.isEqual) prototype.isEqual = NXPtrIsEqual;
     if (! prototype.free) prototype.free = NXNoEffectFree;
@@ -153,13 +156,13 @@ NXHashTable *NXCreateHashTableFromZone (NXHashTablePrototype prototype, unsigned
 	_objc_inform ("*** NXCreateHashTable: invalid style\n");
 	return NULL;
 	};
-    proto = (NXHashTablePrototype *)NXHashGet (prototypes, &prototype); 
+    proto = (NXHashTablePrototype *)NXHashGet (NXPrototypes, &prototype);
     if (! proto) {
 	proto
             = (NXHashTablePrototype *) malloc(sizeof (NXHashTablePrototype));
 	bcopy ((const char*)&prototype, (char*)proto, sizeof (NXHashTablePrototype));
-    	(void) NXHashInsert (prototypes, proto);
-	proto = (NXHashTablePrototype *)NXHashGet (prototypes, &prototype);
+    	(void) NXHashInsert (NXPrototypes, proto);
+	proto = (NXHashTablePrototype *)NXHashGet (NXPrototypes, &prototype);
 	if (! proto) {
 	    _objc_inform ("*** NXCreateHashTable: bug\n");
 	    return NULL;

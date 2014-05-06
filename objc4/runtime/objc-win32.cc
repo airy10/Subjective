@@ -83,6 +83,8 @@ OBJC_EXPORT header_info *_objc_init_image(HMODULE image)
 
 // The assert below ensures that the assumptions in objc-sections-win32.s
 // are correct. (There is probably a better way of doing all the cross-checks.)
+// The other assert check sanity of our section merging: there should be one
+// empty element in the beginning, which is declared in objc-sections-win32.s
 
 #define GETSECT(_name, _type, _sectname, _size) \
 	extern _type _sectname ## _A; extern _type _sectname ## _Z; \
@@ -90,7 +92,7 @@ OBJC_EXPORT header_info *_objc_init_image(HMODULE image)
 		assert(sizeof(_type) == _size * sizeof(void*)); \
 		_type* data = & _sectname ## _A; \
 		*outCount = (& _sectname ## _Z - data); \
-		assert(*outCount > 1); \
+		assert((int)(*outCount) >= 1); \
 		(*outCount)--; \
 		data++; \
 		DLOG("*** %s: %u", #_sectname, *outCount); \
