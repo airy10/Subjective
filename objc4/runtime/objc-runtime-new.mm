@@ -956,7 +956,7 @@ static void method_list_swap(method_list_t *mlist, uint32_t i, uint32_t j)
     // char temp[entsize];
 	char temp[2048];
 	if (entsize > 2048)
-		_objc_fatal("Internal: entsize=%u", entsize);
+		_objc_fatal("Internal: entsize=%lu", entsize);
     memcpy(temp, method_list_nth(mlist, i), entsize);
     memcpy(method_list_nth(mlist, i), method_list_nth(mlist, j), entsize);
     memcpy(method_list_nth(mlist, j), temp, entsize);
@@ -2982,7 +2982,7 @@ void _read_images(header_info **hList, uint32_t hCount)
         }
         
         if (PrintConnecting) {
-            _objc_inform("CLASS: found %zu classes during launch", total);
+            _objc_inform("CLASS: found %lu classes during launch", total);
         }
 
         // namedClasses (NOT realizedClasses)

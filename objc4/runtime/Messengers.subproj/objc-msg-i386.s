@@ -28,6 +28,7 @@
 #if SUBJECTIVE_WIN32
 #   define private_extern globl
 #   define cstring text
+#   define endmacro endm
 #endif
 
 

@@ -269,7 +269,12 @@ void environ_init(void)
 #if SUPPORT_ENVIRON
     int PrintHelp = (getenv("OBJC_HELP") != NULL);
     int PrintOptions = (getenv("OBJC_PRINT_OPTIONS") != NULL);
+
+#if TARGET_OS_WIN32
+	const int secure = 0;
+#else
     int secure = issetugid();
+#endif
 
     if (secure) {
         // All environment variables are ignored when setuid or setgid.

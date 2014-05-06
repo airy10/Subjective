@@ -50,7 +50,7 @@
 #endif
 
 // Define SUPPORT_ENVIRON=1 to enable getenv().
-#if ((TARGET_OS_EMBEDDED  ||  TARGET_OS_IPHONE)  &&  !TARGET_IPHONE_SIMULATOR)  &&  defined(NDEBUG)  ||  SUBJECTIVE
+#if ((TARGET_OS_EMBEDDED  ||  TARGET_OS_IPHONE)  &&  !TARGET_IPHONE_SIMULATOR)  &&  defined(NDEBUG)
 #   define SUPPORT_ENVIRON 0
 #else
 #   define SUPPORT_ENVIRON 1
@@ -163,6 +163,12 @@
 #   define ARR_LOGGING 0
 #else
 #   define SUPPORT_BLOCKS 1
+#endif
+
+#if defined(DEBUG) || !defined(NDEBUG)
+#   define DLOG(fmt, ...) printf(fmt"\n", __VA_ARGS__)
+#else
+#   define DLOG(fmt, ...)
 #endif
 
 #endif

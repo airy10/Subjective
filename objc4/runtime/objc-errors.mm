@@ -39,7 +39,7 @@ void _objc_inform(const char *fmt, ...)
 {
     va_list args;
     va_start(args, fmt);
-    _vcprintf(fmt, args);
+    vprintf(fmt, args);
     va_end(args);
     _cprintf("\n");
 }
@@ -48,7 +48,7 @@ void _objc_fatal(const char *fmt, ...)
 {
     va_list args;
     va_start(args, fmt);
-    _vcprintf(fmt, args);
+    vprintf(fmt, args);
     va_end(args);
     _cprintf("\n");
 
@@ -59,7 +59,7 @@ void __objc_error(id rcv, const char *fmt, ...)
 {
     va_list args;
     va_start(args, fmt);
-    _vcprintf(fmt, args);
+    vprintf(fmt, args);
     va_end(args);
 
     abort();
@@ -67,7 +67,7 @@ void __objc_error(id rcv, const char *fmt, ...)
 
 void _objc_error(id rcv, const char *fmt, va_list args) 
 {
-    _vcprintf(fmt, args);
+    vprintf(fmt, args);
 
     abort();
 }
