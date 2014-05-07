@@ -110,6 +110,7 @@ objc_getsegmentdata(const struct mach_header *mh, const char *segname, unsigned 
         type *data = (type *)                                           \
             getsectiondata(hi->mhdr, SEG_DATA, sectname, &byteCount);   \
         *outCount = byteCount / sizeof(type);                           \
+		/* DLOG("*** %s: %lu", #sectname, *outCount); */ \
         return data;                                                    \
     }
 

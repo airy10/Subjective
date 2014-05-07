@@ -47,40 +47,6 @@ static struct _objc_initializer_
 
 
 
-OBJC_EXPORT void _objc_load_image(HMODULE image, header_info *hinfo)
-{
-    prepare_load_methods(hinfo);
-    call_load_methods();
-}
-
-
-OBJC_EXPORT void _objc_unload_image(HMODULE image, header_info *hinfo)
-{
-    _objc_fatal("image unload not supported");
-}
-
-
-OBJC_EXPORT header_info *_objc_init_image(HMODULE image)
-{
-	static const objc_image_info image_info = {0, 0};
-
-    header_info *hi = (header_info *)_malloc_internal(sizeof(header_info));
-    size_t count, i;
-
-    hi->mhdr = (const headerType *)image;
-    hi->info = &image_info;
-    hi->allClassesRealized = NO;
-    hi->moduleName = (TCHAR *)malloc(MAX_PATH * sizeof(TCHAR));
-    GetModuleFileName((HMODULE)(hi->mhdr), hi->moduleName, MAX_PATH * sizeof(TCHAR));
-
-    appendHeader(hi);
-
-    _read_images(&hi, 1);
-
-    return hi;
-}
-
-
 // The assert below ensures that the assumptions in objc-sections-win32.s
 // are correct. (There is probably a better way of doing all the cross-checks.)
 // The other assert check sanity of our section merging: there should be one
@@ -121,6 +87,38 @@ static header_info *__hinfo = NULL;  // cookie from runtime
 extern IMAGE_DOS_HEADER __ImageBase;  // this image's header
 
 
+OBJC_EXPORT void _objc_load_image(HMODULE image, header_info *hinfo)
+{
+    prepare_load_methods(hinfo);
+    call_load_methods();
+}
+
+
+OBJC_EXPORT header_info *_objc_init_image(HMODULE image)
+{
+	static const objc_image_info image_info = {0, 0};
+
+    header_info *hi = (header_info *)_malloc_internal(sizeof(header_info));
+    size_t count, i;
+
+    hi->mhdr = (const headerType *)image;
+    hi->info = &image_info;
+    hi->allClassesRealized = NO;
+    hi->moduleName = (TCHAR *)malloc(MAX_PATH * sizeof(TCHAR));
+    GetModuleFileName((HMODULE)(hi->mhdr), hi->moduleName, MAX_PATH * sizeof(TCHAR));
+
+    appendHeader(hi);
+
+    size_t selrefCount = 0;
+	_getObjc2SelectorRefs(hi, &selrefCount);
+	sel_init(SUPPORT_GC, selrefCount);
+
+    _read_images(&hi, 1);
+
+    return hi;
+}
+
+
 OBJC_EXPORT void _objc_init(void)
 {
     static bool initialized = false;
@@ -131,7 +129,6 @@ OBJC_EXPORT void _objc_init(void)
 	environ_init();
 	tls_init();
 	lock_init();
-	sel_init(NO, 3500);  // old selector heuristic -- what's this for? H.M.
 	exception_init();
     _objc_load_image((HMODULE)&__ImageBase, __hinfo);
 }
