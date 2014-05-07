@@ -166,7 +166,7 @@
 #endif
 
 #if defined(DEBUG) || !defined(NDEBUG)
-#   define OBJC_PRINT_ALL 1
+#   define OBJC_PRINT_ALL 0
 #   define DLOG(fmt, ...) printf(fmt"\n", ##__VA_ARGS__)
 #else
 #   define OBJC_PRINT_ALL 0

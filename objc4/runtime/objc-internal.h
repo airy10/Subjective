@@ -40,7 +40,7 @@
 #include <objc/objc.h>
 #include <Availability.h>
 #include <malloc/malloc.h>
-#include <dispatch/dispatch.h>
+
 
 __BEGIN_DECLS
 
