@@ -293,11 +293,23 @@ void environ_init(void)
             _objc_inform("OBJC_PRINT_OPTIONS is set");
         }
     }
-    
+
+	int printAll = OBJC_PRINT_ALL;
+	if (!printAll)
+	{
+        char *value = getenv("OBJC_PRINT_ALL");
+        printAll = value && strcmp("YES", value) == 0;
+	}
+
 #define OPTION(var, env, help) \
     if ( var == -1 ) { \
-        char *value = getenv(#env); \
-        var = value != NULL && !strcmp("YES", value); \
+		if (printAll) \
+			var = 1; \
+		else \
+		{ \
+			char *value = getenv(#env); \
+			var = value != NULL && !strcmp("YES", value); \
+		} \
         if (secure) { \
             if (var) _objc_inform(#env " ignored when running setuid or setgid"); \
             var = 0; \
