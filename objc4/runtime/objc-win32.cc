@@ -109,9 +109,15 @@ OBJC_EXPORT header_info *_objc_init_image(HMODULE image)
 
     appendHeader(hi);
 
-    size_t selrefCount = 0;
-	_getObjc2SelectorRefs(hi, &selrefCount);
-	sel_init(SUPPORT_GC, selrefCount);
+    static bool firstTime = true;
+	if (firstTime)
+	{
+		size_t selrefCount = 0;
+		_getObjc2SelectorRefs(hi, &selrefCount);
+		sel_init(SUPPORT_GC, selrefCount);
+		arr_init();
+		firstTime = false;
+	}
 
     _read_images(&hi, 1);
 
