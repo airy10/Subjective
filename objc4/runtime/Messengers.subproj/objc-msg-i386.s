@@ -92,11 +92,7 @@ _objc_exitPoints:
  *
  ********************************************************************/
 
-#if SUBJECTIVE_WIN32
-	os_args = 8
-#else
-	os_args = 4
-#endif
+	os_args			= 4
 
 	self            = os_args + 0
 	super           = os_args + 0
@@ -628,8 +624,20 @@ LGetImpExit:
  *
  ********************************************************************/
 
+#if OBJC_PRINT_ALL
+dbgstr1:	.asciz	"*** objc_msgSend(%p, %s)\n"
+#endif
+
 	ENTRY	_objc_msgSend
 	CALL_MCOUNTER
+
+#if OBJC_PRINT_ALL
+	pushl	selector(%esp)
+	pushl	self(%esp)
+	pushl	$dbgstr1
+	call	__objc_inform
+	addl	$12, %esp
+#endif
 
 // load receiver and selector
 	movl    selector(%esp), %ecx

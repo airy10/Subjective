@@ -703,7 +703,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
-				OTHER_CFLAGS = "-fpic";
+				OTHER_CFLAGS = (
+					"-momit-leaf-frame-pointer",
+					"-fpic",
+				);
 				OTHER_LDFLAGS = "";
 				SDKROOT = macosx10.8;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
@@ -742,7 +745,10 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				HEADER_SEARCH_PATHS = "";
 				LINK_WITH_STANDARD_LIBRARIES = NO;
-				OTHER_CFLAGS = "-fpic";
+				OTHER_CFLAGS = (
+					"-momit-leaf-frame-pointer",
+					"-fpic",
+				);
 				OTHER_LDFLAGS = "";
 				SDKROOT = macosx10.8;
 				STANDARD_C_PLUS_PLUS_LIBRARY_TYPE = dynamic;
