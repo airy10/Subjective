@@ -520,14 +520,12 @@ class AutoreleasePoolPage
 
     // SIZE-sizeof(*this) bytes of contents follow
 
-#if !SUBJECTIVE_WIN32
     static void * operator new(size_t size) {
         return malloc_zone_memalign(malloc_default_zone(), SIZE, SIZE);
     }
     static void operator delete(void * p) {
         return free(p);
     }
-#endif
 
     inline void protect() {
 #if PROTECT_AUTORELEASEPOOL
