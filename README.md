@@ -10,7 +10,7 @@ Subjective: Windows Port of the Objective-C 2.0 Runtime
 
 *Subjective* is an attempt to bring Objective C 2.0 with ARC support to Windows.
 
-This project is a fork of objc4-532.2, the Objective C runtime that ships with OS X 10.8.5. The port can be compiled using llvm-clang on OS X combined with the MinGW linker.
+This project is a fork of objc4-532.2, the Objective C runtime that ships with OS X 10.8.5. The port can be cross-compiled on OS X using llvm-clang combined with the MinGW linker.
 
 There are certain limitations many of which are a matter of extra work, while others, such as exceptions and blocks, depend on more serious work in 3rd party projects. The limitations are:
 
@@ -40,5 +40,5 @@ There are certain limitations many of which are a matter of extra work, while ot
 
 ###Building
 
-At the moment we don't have a procedure that would build a production-ready Win32 library. There is an Xcode project with some self-descriptive schemes and also a Makefile that produces `test.exe`.
+At the moment we don't have a procedure that would build a production-ready Win32 library. There is an Xcode project with some self-descriptive schemes and also a Makefile (objc4/Makefile) that produces `test.exe`.
 
