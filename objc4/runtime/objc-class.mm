@@ -1268,6 +1268,7 @@ _class_createInstancesFromZone(Class cls, size_t extraBytes, void *zone,
     if (size < 16) size = 16;
 
 #if SUBJECTIVE_WIN32
+	// TODO: this can be hidden under malloc_zone_batch_malloc()
 	assert(zone == NULL);
 	size_t mem_size = (size + 3) & ~3uL;
 	char* p = (char*)calloc(mem_size, num_requested);

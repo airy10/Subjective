@@ -124,7 +124,7 @@
 
 // Define SUPPORT_ZEROCOST_EXCEPTIONS to use "zero-cost" exceptions for OBJC2.
 // Be sure to edit objc-exception.h as well (objc_add/removeExceptionHandler)
-#if !__OBJC2__  ||  defined(__arm__)
+#if !__OBJC2__  ||  defined(__arm__)  ||  SUBJECTIVE_WIN32
 #   define SUPPORT_ZEROCOST_EXCEPTIONS 0
 #else
 #   define SUPPORT_ZEROCOST_EXCEPTIONS 1
@@ -133,7 +133,8 @@
 // Define SUPPORT_ALT_HANDLERS if you're using zero-cost exceptions 
 // but also need to support AppKit's alt-handler scheme
 // Be sure to edit objc-exception.h as well (objc_add/removeExceptionHandler)
-#if !SUPPORT_ZEROCOST_EXCEPTIONS  ||  TARGET_OS_IPHONE  ||  TARGET_OS_EMBEDDED
+#if !SUPPORT_ZEROCOST_EXCEPTIONS  ||  TARGET_OS_IPHONE  ||  TARGET_OS_EMBEDDED  \
+		||  SUBJECTIVE
 #   define SUPPORT_ALT_HANDLERS 0
 #else
 #   define SUPPORT_ALT_HANDLERS 1

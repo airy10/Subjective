@@ -21,24 +21,21 @@
  * @APPLE_LICENSE_HEADER_END@
  */
 
-
-#include "objc-private.h"
-#include "objc-exception.h"
-
-
-#if !__OBJC2__  ||  SUBJECTIVE
+#if !__OBJC2__
 
 /***********************************************************************
 * 32-bit implementation
 **********************************************************************/
 
+#include "objc-private.h"
 #include <stdlib.h>
 #include <setjmp.h>
 
-#if !TARGET_OS_WIN32
+#if !SUBJECTIVE_WIN32
 #include <execinfo.h>
 #endif
 
+#include "objc-exception.h"
 
 static objc_exception_functions_t xtab;
 
@@ -77,7 +74,7 @@ void objc_exception_throw(id exception) {
     if (PrintExceptionThrow) {
         _objc_inform("EXCEPTIONS: throwing %p (%s)", 
                      exception, object_getClassName(exception));
-#if !TARGET_OS_WIN32
+#if !SUBJECTIVE_WIN32
         void* callstack[500];
         int frameCount = backtrace(callstack, 500);
         backtrace_symbols_fd(callstack, frameCount, fileno(stderr));
@@ -247,7 +244,10 @@ void _destroyAltHandlerList(struct alt_handler_list *list)
 
 #include "objc-private.h"
 #include <objc/objc-exception.h>
+
+#if !SUBJECTIVE_WIN32
 #include <execinfo.h>
+#endif
 
 // unwind library types and functions
 // Mostly adapted from Itanium C++ ABI: Exception Handling
@@ -257,21 +257,21 @@ struct _Unwind_Exception;
 struct _Unwind_Context;
 
 typedef int _Unwind_Action;
-static const _Unwind_Action _UA_SEARCH_PHASE = 1;
-static const _Unwind_Action _UA_CLEANUP_PHASE = 2;
-static const _Unwind_Action _UA_HANDLER_FRAME = 4;
-static const _Unwind_Action _UA_FORCE_UNWIND = 8;
+static const _Unwind_Action __attribute__((unused)) _UA_SEARCH_PHASE = 1;
+static const _Unwind_Action __attribute__((unused)) _UA_CLEANUP_PHASE = 2;
+static const _Unwind_Action __attribute__((unused)) _UA_HANDLER_FRAME = 4;
+static const _Unwind_Action __attribute__((unused)) _UA_FORCE_UNWIND = 8;
 
 typedef int _Unwind_Reason_Code;
-static const _Unwind_Reason_Code _URC_NO_REASON = 0;
-static const _Unwind_Reason_Code _URC_FOREIGN_EXCEPTION_CAUGHT = 1;
-static const _Unwind_Reason_Code _URC_FATAL_PHASE2_ERROR = 2;
-static const _Unwind_Reason_Code _URC_FATAL_PHASE1_ERROR = 3;
-static const _Unwind_Reason_Code _URC_NORMAL_STOP = 4;
-static const _Unwind_Reason_Code _URC_END_OF_STACK = 5;
-static const _Unwind_Reason_Code _URC_HANDLER_FOUND = 6;
-static const _Unwind_Reason_Code _URC_INSTALL_CONTEXT = 7;
-static const _Unwind_Reason_Code _URC_CONTINUE_UNWIND = 8;
+static const _Unwind_Reason_Code __attribute__((unused)) _URC_NO_REASON = 0;
+static const _Unwind_Reason_Code __attribute__((unused)) _URC_FOREIGN_EXCEPTION_CAUGHT = 1;
+static const _Unwind_Reason_Code __attribute__((unused)) _URC_FATAL_PHASE2_ERROR = 2;
+static const _Unwind_Reason_Code __attribute__((unused)) _URC_FATAL_PHASE1_ERROR = 3;
+static const _Unwind_Reason_Code __attribute__((unused)) _URC_NORMAL_STOP = 4;
+static const _Unwind_Reason_Code __attribute__((unused)) _URC_END_OF_STACK = 5;
+static const _Unwind_Reason_Code __attribute__((unused)) _URC_HANDLER_FOUND = 6;
+static const _Unwind_Reason_Code __attribute__((unused)) _URC_INSTALL_CONTEXT = 7;
+static const _Unwind_Reason_Code __attribute__((unused)) _URC_CONTINUE_UNWIND = 8;
 
 struct dwarf_eh_bases
 {
@@ -284,7 +284,7 @@ OBJC_EXTERN uintptr_t _Unwind_GetIP (struct _Unwind_Context *);
 OBJC_EXTERN uintptr_t _Unwind_GetCFA (struct _Unwind_Context *);
 OBJC_EXTERN uintptr_t _Unwind_GetLanguageSpecificData(struct _Unwind_Context *);
 
-/*
+
 // C++ runtime types and functions
 // copied from cxxabi.h
 
@@ -294,7 +294,6 @@ OBJC_EXTERN void *__cxa_begin_catch(void *exc);
 OBJC_EXTERN void __cxa_end_catch(void);
 OBJC_EXTERN void __cxa_rethrow(void);
 OBJC_EXTERN void *__cxa_current_exception_type(void);
-*/
 
 #if SUPPORT_ZEROCOST_EXCEPTIONS
 #   define CXX_PERSONALITY __gxx_personality_v0
@@ -520,9 +519,11 @@ void objc_exception_throw(id obj)
         if (!PrintExceptions)
             _objc_inform("EXCEPTIONS: throwing %p (object %p, a %s)", 
                          exc, obj, object_getClassName(obj));
+#if !SUBJECTIVE_WIN32
         void* callstack[500];
         int frameCount = backtrace(callstack, 500);
         backtrace_symbols_fd(callstack, frameCount, fileno(stderr));
+#endif
     }
     
     OBJC_RUNTIME_OBJC_EXCEPTION_THROW(obj);  // dtrace probe to log throw activity
